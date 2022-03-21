@@ -6,31 +6,6 @@
 	display: block;
 }
 
-.user_info {
-	margin: 8px;
-	display: flex;
-}
-
-.img_profile img{
-	height: 200px;
-	width: 200px;
-
-}
-
-.user_name {
-	margin: 8px;
-	padding: 8px;
-	
-}
-
-.user_location {
-	margin: 8px;
-	padding: 8px;
-	flex-grow:1;
-	text-align: right;
-	
-}
-
 .add_post {
 	display: flex;
 	flex-direction: column;
