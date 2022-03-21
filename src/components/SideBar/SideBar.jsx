@@ -5,6 +5,7 @@ import newsIcon from './../assets/img/sidebar/news-icon.png';
 import musicIcon from './../assets/img/sidebar/music-icon.png';
 import settingsIcon from './../assets/img/sidebar/settings-icon.png';
 import cl from './SideBar.module.css';
+import { NavLink } from 'react-router-dom';
 
 const SideBar = (props) => {
 	return (
@@ -15,37 +16,48 @@ const SideBar = (props) => {
 						<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						<a href="/profile"><span className={cl.left_label}>Profile</span></a>
+						<NavLink to="/profile" 
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Profile
+						</NavLink>
 					</li>
 					<li className={cl.side_bar_item}>
 						<div className={cl.left_menu_icon}>
 							<img src={messagesIcon}/>
 						</div>
-						<a href="/dialogs"><span className={cl.left_label}>Messages</span></a>
+						<NavLink to="/dialogs"
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Messages
+						</NavLink>
 					</li>
 					<li className={cl.side_bar_item}>
 						<div className={cl.left_menu_icon}>
 							<img src={usersIcon}/>
 						</div>
-						<a href="/users"><span className={cl.left_label}>Users</span></a>
+						<NavLink to="/users"
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Users
+						</NavLink>
 					</li>
 					<li className={cl.side_bar_item}>
 						<div className={cl.left_menu_icon}>
 							<img src={newsIcon}/>
 						</div>
-						<a href="/news"><span className={cl.left_label}>News</span></a>
+						<NavLink to="/news"
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>News
+						</NavLink>
 					</li>
 					<li className={cl.side_bar_item}>
 						<div className={cl.left_menu_icon}>
 							<img src={musicIcon}/>
 						</div>
-						<a href="/music"><span className={cl.left_label}>Music</span></a>
+						<NavLink to="/music"
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Music
+						</NavLink>
 					</li>
 					<li className={cl.side_bar_item}>
 						<div className={cl.left_menu_icon}>
 							<img src={settingsIcon}/>
 						</div>
-						<a href="/settings"><span className={cl.left_label}>Settings</span></a>
+						<NavLink to="/settings" className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Settings
+						</NavLink>
 					</li>
 				</ol>
 			</nav>
