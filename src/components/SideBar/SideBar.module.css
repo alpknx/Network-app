@@ -13,27 +13,3 @@
 	padding: 0;
 	margin: 8px;
 }
-
-.side_bar_item {
-	display: flex;
-	justify-content: space-evenly;
-	margin: 8px 0px;
-	padding: 8px;
-	background-color: green;
-	border-radius: 5px ;
-}
-
-.left_menu_icon img {
-	height: 20px;
-	width: 20px;
-}
-
-.left_label{
-	font-size: 18px;
-	color: #ADFF2F;
-	font-family: monospace;
-}
-
-.left_label:active{
-	color: yellow;
-}

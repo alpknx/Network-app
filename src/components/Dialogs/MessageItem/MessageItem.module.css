@@ -1,0 +1,11 @@
+.message_item {
+	display: flex;
+	align-items: center;
+	border: 1px solid grey;
+	font-size: monospace;
+
+}.left_menu_icon img {
+	width: 50px;
+	height: 50px;
+	padding: 8px;
+} 
