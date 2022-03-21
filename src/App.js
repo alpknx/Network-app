@@ -13,10 +13,10 @@ const  App = () =>  {
 	return (
 		<BrowserRouter>
 			<div className='app_wrapper'>
-				<div className='app_header_content'>
-					<Header/>
-				</div>
 				<div className='app_layout'>
+					<div className='app_header_content'>
+						<Header/>
+					</div>
 					<div className='side_bar'>
 						<SideBar/>
 					</div>
