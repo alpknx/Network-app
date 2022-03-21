@@ -8,9 +8,13 @@
 }
 
 .app_header_content {
+	display: block;
 	grid-area: appHeader;
 	grid-gap: 16px;
-	background-color: aquamarine;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+   width: 100%;
+
 }
 
 .app_layout {
