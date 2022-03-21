@@ -2,6 +2,7 @@ import './App.css';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import SideBar from './components/SideBar/SideBar';
+import Dialogs from './components/Dialogs/Dialogs';
 
 const  App = () =>  {
 	return (
@@ -14,7 +15,8 @@ const  App = () =>  {
 					<SideBar/>
 				</div>
 				<div className="app_content">
-					<Profile/>
+					{/* <Profile/> */}
+					<Dialogs/>
 				</div>
 			</div>
 		</div>
