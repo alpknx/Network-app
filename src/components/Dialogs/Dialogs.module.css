@@ -18,31 +18,10 @@
 	padding-left: 0px;
 }
 
-.dialog_item{
-	display: flex;
-	align-items: center;
-	border: 1px solid gray;
-	font-size: monospace;
-}
-
-.left_menu_icon img {
-	width: 50px;
-	height: 50px;
-	padding: 8px;
-} 
-
 .messages_list {
 	display: grid;
 	list-style: none;
 	padding-left: 0px;
-}
-
-.message_item {
-	display: flex;
-	align-items: center;
-	border: 1px solid grey;
-	font-size: monospace;
-
 }
 
 .activeLink {

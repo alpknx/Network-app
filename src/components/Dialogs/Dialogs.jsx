@@ -1,6 +1,6 @@
 import cl from './Dialogs.module.css'
-import profileIcon from './../assets/img/sidebar/profile-icon.png';
-import { NavLink } from 'react-router-dom';
+import DialogItem from './DialogItem/DialogITem';
+import MessageItem from './MessageItem/MessageItem';
 
 const Dialogs = (props) => {
 	return (
@@ -10,78 +10,18 @@ const Dialogs = (props) => {
 			</div>
 			<div className={cl.message_section}>
 				<ul className={cl.dialogs_list}>
-					<li className={cl.dialog_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						<NavLink to="/dialogs/1" 
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Alexander
-						</NavLink>
-					</li>
-					<li className={cl.dialog_item}>
-					<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						<NavLink to="/dialogs/2" 
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Sergey
-						</NavLink>
-					</li>
-					<li className={cl.dialog_item}>
-					<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						<NavLink to="/dialogs/3" 
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Sveta
-						</NavLink>
-					</li>
-					<li className={cl.dialog_item}>
-					<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						<NavLink to="/dialogs/4" 
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Julia
-						</NavLink>
-					</li>
-					<li className={cl.dialog_item}>
-					<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						<NavLink to="/dialogs/5" 
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Stepan
-						</NavLink>
-					</li>
+					<DialogItem name="Alexander" id="1"/>
+					<DialogItem name="Sergey" id="2"/>
+					<DialogItem name="Sveta" id="3"/>
+					<DialogItem name="Julia" id="4"/>
+					<DialogItem name="Stepan" id="5"/>
 				</ul>
 				<ul className={cl.messages_list}>
-					<li className={cl.message_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						Hello
-					</li>
-					<li className={cl.message_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						Check this linnk
-					</li>
-					<li className={cl.message_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						Once upon a time
-					</li>
-					<li className={cl.message_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						I missed about you
-					</li>
-					<li className={cl.message_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						Need to talk
-					</li>
+				<MessageItem message="Hello"/>
+				<MessageItem message="Check this linnk"/>
+				<MessageItem message="Once upon a time"/>
+				<MessageItem message="I missed about you"/>
+				<MessageItem message="Once upon a time"/>
 				</ul>
 			</div>
 		</div>
