@@ -1,4 +1,5 @@
 import profileImg from './../assets/img/profile-img.png'
+import MyPosts from './MyPosts/MyPosts';
 import cl from './Profile.module.css';
 
 const Profile = () => {
@@ -24,16 +25,7 @@ const Profile = () => {
 						<button>Add Post</button>
 					</div>
 				</div>
-				<div className={cl.posts_list}>
-					<div className={cl.post_item}>
-						<div className={cl.post_text}>
-							new post
-						</div>
-						<div className={cl.post_likes}>
-							likes : 10 
-						</div>
-					</div>
-				</div>
+				<MyPosts/>
 			</div>
 		</div>
 	);

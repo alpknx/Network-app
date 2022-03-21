@@ -1,0 +1,26 @@
+.posts_list {
+	display: block;
+	margin: 16px;
+}
+
+.post_item {
+	display: flex;
+}
+
+img{
+	height: 50px;
+	width: 50px;
+
+}
+
+.post_and_like {
+	display: block;
+}
+
+.post_text {
+	margin: 8px;
+}
+
+.post_likes {
+	margin: 8px;
+}
