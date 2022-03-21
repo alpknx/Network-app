@@ -1,0 +1,68 @@
+.app_content_inner {
+	display: block;;
+}
+
+.profile_content {
+	display: block;
+}
+
+.user_info {
+	margin: 8px;
+	display: flex;
+}
+
+.img_profile img{
+	height: 200px;
+	width: 200px;
+
+}
+
+.user_name {
+	margin: 8px;
+	padding: 8px;
+	
+}
+
+.user_location {
+	margin: 8px;
+	padding: 8px;
+	flex-grow:1;
+	text-align: right;
+	
+}
+
+.add_post {
+	display: flex;
+	flex-direction: column;
+	padding: 8px;
+
+}
+
+.post_textarea{
+	margin: 8px;
+}
+
+.add_post_button  button{
+	margin: 8px;
+	font-weight: 700;
+   color: white;
+   text-decoration: none;
+   padding: .8em 1em calc(.8em + 3px);
+   border-radius: 3px;
+   background: rgb(64,199,129);
+   box-shadow: 0 -3px rgb(53,167,110) inset;
+   transition: 0.2s;
+	
+} 
+
+.posts_list {
+	margin: 16px;
+}
+
+.post_text {
+	margin: 8px;
+}
+
+.post_likes {
+	margin: 8px;
+}
