@@ -1,5 +1,6 @@
 import cl from './Dialogs.module.css'
 import profileIcon from './../assets/img/sidebar/profile-icon.png';
+import { NavLink } from 'react-router-dom';
 
 const Dialogs = (props) => {
 	return (
@@ -13,31 +14,41 @@ const Dialogs = (props) => {
 						<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						Alexander
+						<NavLink to="/dialogs/1" 
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Alexander
+						</NavLink>
 					</li>
 					<li className={cl.dialog_item}>
 					<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						Dmitry
+						<NavLink to="/dialogs/2" 
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Sergey
+						</NavLink>
 					</li>
 					<li className={cl.dialog_item}>
 					<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						Sveta
+						<NavLink to="/dialogs/3" 
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Sveta
+						</NavLink>
 					</li>
 					<li className={cl.dialog_item}>
 					<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						Julia
+						<NavLink to="/dialogs/4" 
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Julia
+						</NavLink>
 					</li>
 					<li className={cl.dialog_item}>
 					<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						Sergey
+						<NavLink to="/dialogs/5" 
+									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>Stepan
+						</NavLink>
 					</li>
 				</ul>
 				<ul className={cl.messages_list}>
@@ -57,13 +68,13 @@ const Dialogs = (props) => {
 						<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						Once upin a time
+						Once upon a time
 					</li>
 					<li className={cl.message_item}>
 						<div className={cl.left_menu_icon}>
 							<img src={profileIcon}/>
 						</div>
-						I have never seen you for ages
+						I missed about you
 					</li>
 					<li className={cl.message_item}>
 						<div className={cl.left_menu_icon}>
