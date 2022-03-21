@@ -9,12 +9,12 @@ const MyPosts = (props) => {
 		{id: 3, message: 'Second', likes: 10},
 	];
 
+	let postElements = postsData.map(postItem => <Post message={postItem.message} likes={postItem.likes}/>);
+
 	return (
 		<div className={cl.posts_list}>
 			<h1> My Posts </h1>
-			<Post message={postsData[0].message} likes={postsData[0].likes}/>
-			<Post message={postsData[1].message} likes={postsData[1].likes}/>
-			<Post message={postsData[2].message} likes={postsData[2].likes}/>
+			{postElements}
 			</div>
 	);
 }
