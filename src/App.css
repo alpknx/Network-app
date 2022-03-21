@@ -24,11 +24,17 @@
 	grid-template-columns: 2fr 10fr;
 	grid-template-areas:
 	"sidebar appContent";
+   margin: 0 auto;
 }
 
 .side_bar {
+	display: block;
 	grid-area: sidebar;
-	background-color: blue;
+	background-color: #FFFFFF;
+	width: 149px;
+   position: relative;
+	border-radius: 5px;
+	text-align: center;
 }
 
 .app_content {
