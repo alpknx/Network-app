@@ -1,0 +1,28 @@
+.app_header_wrapper {
+	display: grid;
+	grid-gap: 16px;
+	align-items: center;
+	grid-template-columns: auto 1fr auto;
+	grid-template-rows: auto 1fr;
+	grid-template-areas: 
+	"logo name login";
+	margin: 0 auto;
+   padding: 0 15px;
+}
+
+.header_img  img{
+	grid-area: logo;
+	height: 50px;
+	width: 50px;
+}
+
+.header_name {
+	grid-area: name;
+	text-align: left;
+
+}
+
+.header_login {
+	grid-area: login;
+	text-align: right;
+}
