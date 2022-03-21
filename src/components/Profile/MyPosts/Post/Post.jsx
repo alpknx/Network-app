@@ -1,7 +1,7 @@
 import cl from './Post.module.css';
 import profileImg from './../../../assets/img/profile-img.png'
 
-const Post = () => {
+const Post = (props) => {
 	return (
 		<div className={cl.post_item}>
 			<div className={cl.img_profile}>
@@ -9,10 +9,10 @@ const Post = () => {
 				</div>
 			<div className={cl.post_and_like}>
 				<div className={cl.post_text}>
-					new post
+					{props.message}
 				</div>
 				<div className={cl.post_likes}>
-					likes : 10 
+					Likes: {props.likes}
 				</div>
 			</div>
 		</div>
