@@ -5,60 +5,19 @@ import newsIcon from './../assets/img/sidebar/news-icon.png';
 import musicIcon from './../assets/img/sidebar/music-icon.png';
 import settingsIcon from './../assets/img/sidebar/settings-icon.png';
 import cl from './SideBar.module.css';
-import { NavLink } from 'react-router-dom';
+import SideBarItem from './SideBarItem/SideBarItem';
 
 const SideBar = (props) => {
 	return (
 		<div className={cl.side_bar_inner}>
 			<nav className={cl.side_bar_nav}>
 				<ol className={cl.side_bar_ol}>
-					<li className={cl.side_bar_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={profileIcon}/>
-						</div>
-						<NavLink to="/profile" 
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Profile
-						</NavLink>
-					</li>
-					<li className={cl.side_bar_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={messagesIcon}/>
-						</div>
-						<NavLink to="/dialogs"
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Messages
-						</NavLink>
-					</li>
-					<li className={cl.side_bar_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={usersIcon}/>
-						</div>
-						<NavLink to="/users"
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Users
-						</NavLink>
-					</li>
-					<li className={cl.side_bar_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={newsIcon}/>
-						</div>
-						<NavLink to="/news"
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>News
-						</NavLink>
-					</li>
-					<li className={cl.side_bar_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={musicIcon}/>
-						</div>
-						<NavLink to="/music"
-									className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Music
-						</NavLink>
-					</li>
-					<li className={cl.side_bar_item}>
-						<div className={cl.left_menu_icon}>
-							<img src={settingsIcon}/>
-						</div>
-						<NavLink to="/settings" className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.left_label}`}>Settings
-						</NavLink>
-					</li>
+					<SideBarItem icon={profileIcon} link={"/profile"} SideBarItem="Profile"/>
+					<SideBarItem icon={messagesIcon} link={"/dialogs"} SideBarItem="Messages"/>
+					<SideBarItem icon={usersIcon} link={"/users"} SideBarItem="Users"/>
+					<SideBarItem icon={newsIcon} link={"/news"} SideBarItem="News"/>
+					<SideBarItem icon={musicIcon} link={"/music"} SideBarItem="Music"/>
+					<SideBarItem icon={settingsIcon} link={"/settings"} SideBarItem="Settings"/>
 				</ol>
 			</nav>
 		</div>
