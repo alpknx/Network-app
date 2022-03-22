@@ -9,7 +9,7 @@ import News from './../src/components/News/News';
 import Music from './../src/components/Music/Music';
 import Settings from './../src/components/Settings/Settings';
 
-const  App = () =>  {
+const  App = (props) =>  {
 	return (
 		<BrowserRouter>
 			<div className='app_wrapper'>
@@ -18,12 +18,19 @@ const  App = () =>  {
 						<Header/>
 					</div>
 					<div className='side_bar'>
-						<SideBar/>
+						<SideBar friends={props.state.sidebar.friends}/>
 					</div>
 					<div className="app_content">
 						<Routes>
-							<Route path="/profile" element={<Profile/>} />
-							<Route path="/dialogs/*" element={<Dialogs/>} />
+							<Route path="/profile" 
+									element={<Profile profilePage={props.state.profilePage}
+									onAddPost={props.onAddPost} updateNewPostText={props.updateNewPostText}
+									/>} />
+							<Route path="/dialogs/*" 
+									element={<Dialogs dialogsData={props.state.messagesPage.dialogsData}
+									messagesData={props.state.messagesPage.messagesData}
+									onAddMessage = {props.onAddMessage}
+									updateNewMessageText={props.updateNewMessageText}/>} />
 							<Route path="/users" element={<Users/>} />
 							<Route path="/news" element={<News/>} />
 							<Route path="/music" element={<Music/>} />

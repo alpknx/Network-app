@@ -1,4 +1,3 @@
-import profileIcon from './../../assets/img/sidebar/profile-icon.png';
 import { NavLink } from 'react-router-dom';
 import cl from './DialogItem.module.css'
 
@@ -8,7 +7,7 @@ const DialogItem = (props) => {
 	return(
 		<li className={cl.dialog_item}>
 			<div className={cl.left_menu_icon}>
-				<img src={profileIcon}/>
+				<img src={props.img}/>
 			</div>
 			<NavLink to={path}
 						className={({ isActive }) => isActive ? `${cl.activeLink}` : `${cl.dialog_item}`}>{props.name}
