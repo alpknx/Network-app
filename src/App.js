@@ -23,9 +23,7 @@ const  App = (props) =>  {
 					<div className="app_content">
 						<Routes>
 							<Route path="/profile" 
-									element={<Profile profilePage={props.state.profilePage}
-									dispatch={props.dispatch} 
-									/>} />
+									element={<Profile reduxStore={props.reduxStore}/>} />
 							<Route path="/dialogs/*" 
 									element={<Dialogs dialogsData={props.state.messagesPage.dialogsData}
 									messagesData={props.state.messagesPage.messagesData}

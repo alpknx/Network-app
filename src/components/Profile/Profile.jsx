@@ -1,16 +1,15 @@
-import MyPosts from './MyPosts/MyPosts';
 import cl from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import AddPost from './AddPost/AddPost';
+import AddPostContainer from './AddPost/AddPostContainer';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 const Profile = (props) => {
 	return (
 		<div className={cl.app_content_inner}>
 			<div className={cl.profile_content}>
 				<ProfileInfo/>
-				<AddPost dispatch={props.dispatch} 
-							newPostText={props.profilePage.newPostText}/>
-				<MyPosts postsData={props.profilePage.postsData}/>
+				<AddPostContainer reduxStore={props.reduxStore} />
+				<MyPostsContainer reduxStore={props.reduxStore} />
 			</div>
 		</div>
 	);
