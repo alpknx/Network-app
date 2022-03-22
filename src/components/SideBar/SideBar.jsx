@@ -6,14 +6,11 @@ import musicIcon from './../assets/img/sidebar/music-icon.png';
 import settingsIcon from './../assets/img/sidebar/settings-icon.png';
 import cl from './SideBar.module.css';
 import SideBarItem from './SideBarItem/SideBarItem';
+import Friends from './SideBarItem/Friends/Friends';
 
 const SideBar = (props) => {
 
-	let friendsRow = props.friends.map(friend => 
-		<div className={cl.friends_info}>
-			<div><img src={friend.img} /> </div>
-			<div>{friend.name}</div>
-		</div>);
+	let friendsRow = props.friends.map(friend => <Friends img={friend.img} name={friend.name}/>);
 
 	return (
 		<div className={cl.side_bar_inner}>
@@ -22,7 +19,7 @@ const SideBar = (props) => {
 					<SideBarItem icon={profileIcon} link={"/profile"} SideBarItem="Profile"/>
 					<SideBarItem icon={messagesIcon} link={"/dialogs"} SideBarItem="Messages"/>
 					<SideBarItem icon={usersIcon} link={"/users"} SideBarItem="Users"/>
-					<li className={cl.friends}>{friendsRow}</li>
+					{friendsRow}
 					<SideBarItem icon={newsIcon} link={"/news"} SideBarItem="News"/>
 					<SideBarItem icon={musicIcon} link={"/music"} SideBarItem="Music"/>
 					<SideBarItem icon={settingsIcon} link={"/settings"} SideBarItem="Settings"/>
