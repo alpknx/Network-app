@@ -1,11 +1,10 @@
 import cl from './Post.module.css';
-import profileImg from './../../../assets/img/profile-img.png'
 
 const Post = (props) => {
 	return (
 		<div className={cl.post_item}>
 			<div className={cl.img_profile}>
-					<img src={profileImg}/>
+					<img src={props.img}/>
 				</div>
 			<div className={cl.post_and_like}>
 				<div className={cl.post_text}>

@@ -4,9 +4,9 @@ import MessageItem from './MessageItem/MessageItem';
 
 const Dialogs = (props) => {
 
-	let dialogElelments = props.dialogsData.map(dialog=> <DialogItem name={Dialogs.name} id={dialog.id}/>);
+	let dialogElements = props.dialogsData.map(dialog=> <DialogItem img={dialog.img} name={dialog.name} id={dialog.id}/>);
 
-	let messageElements = props.messagesData.map(messageItem=> <MessageItem message={messageItem.message}/>);
+	let messageElements = props.messagesData.map(messageItem=> <MessageItem img={messageItem.img} message={messageItem.message}/>);
 		
 	return (
 		<div className={cl.dialogs_page}>
@@ -15,7 +15,7 @@ const Dialogs = (props) => {
 			</div>
 			<div className={cl.message_section}>
 				<ul className={cl.dialogs_list}>
-					{dialogElelments}
+					{dialogElements}
 				</ul>
 				<ul className={cl.messages_list}>
 				{messageElements}

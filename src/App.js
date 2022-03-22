@@ -18,13 +18,15 @@ const  App = (props) =>  {
 						<Header/>
 					</div>
 					<div className='side_bar'>
-						<SideBar/>
+						<SideBar friends={props.state.sidebar.friends}/>
 					</div>
 					<div className="app_content">
 						<Routes>
-							<Route path="/profile" element={<Profile postsData={props.postsData}/>} />
+							<Route path="/profile" 
+										element={<Profile postsData={props.state.profilePage.postsData}/>} />
 							<Route path="/dialogs/*" 
-									element={<Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData}/>} />
+									element={<Dialogs dialogsData={props.state.messagesPage.dialogsData}
+									messagesData={props.state.messagesPage.messagesData}/>} />
 							<Route path="/users" element={<Users/>} />
 							<Route path="/news" element={<News/>} />
 							<Route path="/music" element={<Music/>} />

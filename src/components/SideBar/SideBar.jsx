@@ -8,6 +8,13 @@ import cl from './SideBar.module.css';
 import SideBarItem from './SideBarItem/SideBarItem';
 
 const SideBar = (props) => {
+
+	let friendsRow = props.friends.map(friend => 
+		<div className={cl.friends_info}>
+			<div><img src={friend.img} /> </div>
+			<div>{friend.name}</div>
+		</div>);
+
 	return (
 		<div className={cl.side_bar_inner}>
 			<nav className={cl.side_bar_nav}>
@@ -15,6 +22,7 @@ const SideBar = (props) => {
 					<SideBarItem icon={profileIcon} link={"/profile"} SideBarItem="Profile"/>
 					<SideBarItem icon={messagesIcon} link={"/dialogs"} SideBarItem="Messages"/>
 					<SideBarItem icon={usersIcon} link={"/users"} SideBarItem="Users"/>
+					<li className={cl.friends}>{friendsRow}</li>
 					<SideBarItem icon={newsIcon} link={"/news"} SideBarItem="News"/>
 					<SideBarItem icon={musicIcon} link={"/music"} SideBarItem="Music"/>
 					<SideBarItem icon={settingsIcon} link={"/settings"} SideBarItem="Settings"/>
