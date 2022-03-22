@@ -1,4 +1,5 @@
 import React from 'react';
+import { onAddMessageActionCreator, updateNewMessageTextActionCreator } from '../../../Redux/state';
 import cl from './AddMessage.module.css'
 
 const AddMessage = (props) => {
@@ -6,13 +7,12 @@ const AddMessage = (props) => {
 	let newMessageElement = React.createRef();
 
 	let onAddMessage = () => {
-		props.dispatch({type: 'ADD-MESSAGE'})
+		props.dispatch(onAddMessageActionCreator());
 	}
 
 	let onMessageChange =() =>  {
 		let text = newMessageElement.current.value;
-		let action = {type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text};
-		props.dispatch(action);
+		props.dispatch(updateNewMessageTextActionCreator(text));
 	}
 	
 	return(

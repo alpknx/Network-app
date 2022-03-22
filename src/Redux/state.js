@@ -1,5 +1,10 @@
 import profileImg from './../components/assets/img/profile-img.png';
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
 	_state: {
 		profilePage : {
@@ -52,23 +57,6 @@ let store = {
 		this._callSubscriber = observer; //observer button.addEventListener
 	}, 
 
-	onAddMessage (){
-		let newMessage = {
-			id: 4,
-			message: this._state.messagesPage.newMessageText,
-			likes: 10,
-			img:`${profileImg}` 
-		}
-		this._state.messagesPage.messagesData.push(newMessage);
-		this._state.messagesPage.newMessageText = '';
-		this._callSubscriber(this._state);
-	},
-
-	updateNewMessageText(newText){
-		this._state.messagesPage.newMessageText = newText;
-		this._callSubscriber(this._state);
-	},
-
 	dispatch(action) {
 		if(action.type === 'ADD-POST') {
 			let newPost = {
@@ -101,6 +89,29 @@ let store = {
 		}
 	}
 	
+}
+
+export const onAddPostActionCreator = () => {
+	return {
+		type: ADD_POST
+	}
+}
+export const updateNewPostTextActionCreator = (text) => {
+	return {
+		type: UPDATE_NEW_POST_TEXT,
+		newText: text
+	}
+}
+export const onAddMessageActionCreator = () => {
+	return {
+		type: ADD_MESSAGE
+	}
+}
+export const updateNewMessageTextActionCreator = (text) => {
+	return {
+		type: UPDATE_NEW_MESSAGE_TEXT,
+		newText: text
+	}
 }
 
 export default store;
