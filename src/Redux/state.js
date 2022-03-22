@@ -1,4 +1,3 @@
-import { rerenderEntireTree } from '../render';
 import profileImg from './../components/assets/img/profile-img.png';
 
 
@@ -42,7 +41,7 @@ let state = {
 
 }
 
-export let onAddPost = () => {
+export const onAddPost = () => {
 	let newPost = {
 		id: 4,
 		message: state.profilePage.newPostText,
@@ -54,12 +53,12 @@ export let onAddPost = () => {
 	rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
 	state.profilePage.newPostText = newText;
 	rerenderEntireTree(state);
 }
 
-export let onAddMessage = () => {
+export const onAddMessage = () => {
 	let newMessage = {
 		id: 4,
 		message: state.messagesPage.newMessageText,
@@ -71,10 +70,14 @@ export let onAddMessage = () => {
 	rerenderEntireTree(state);
 }
 
-export let updateNewMessageText = (newText) => {
+export const updateNewMessageText = (newText) => {
 	state.messagesPage.newMessageText = newText;
 	rerenderEntireTree(state);
 }
+
+export const subscribe = (observer) => {
+	rerenderEntireTree = observer; //observer button.addEventListener
+} 
 
 
 export default state;
