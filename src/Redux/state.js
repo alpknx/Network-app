@@ -40,30 +40,17 @@ let store = {
 	
 	},
 
-	getState() {
-		return this._state
-	},
-
 	_callSubscriber() {
 		console.log('state changed')
 	},
 
-	onAddPost(){
-		let newPost = {
-			id: 4,
-			message: this._state.profilePage.newPostText,
-			likes: 10,
-			img:`${profileImg}` 
-		}
-		this._state.profilePage.postsData.push(newPost);
-		this._state.profilePage.newPostText = '';
-		this._callSubscriber(this._state);
+	getState() {
+		return this._state
 	},
 
-	updateNewPostText(newText){
-		this._state.profilePage.newPostText = newText;
-		this._callSubscriber(this._state);
-	},
+	subscribe(observer){
+		this._callSubscriber = observer; //observer button.addEventListener
+	}, 
 
 	onAddMessage (){
 		let newMessage = {
@@ -82,10 +69,38 @@ let store = {
 		this._callSubscriber(this._state);
 	},
 
-	subscribe(observer){
-		this._callSubscriber = observer; //observer button.addEventListener
-	} 
+	dispatch(action) {
+		if(action.type === 'ADD-POST') {
+			let newPost = {
+				id: 4,
+				message: this._state.profilePage.newPostText,
+				likes: 10,
+				img:`${profileImg}` 
+			}
+			this._state.profilePage.postsData.push(newPost);
+			this._state.profilePage.newPostText = '';
+			this._callSubscriber(this._state);
+		} else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+			this._state.profilePage.newPostText = action.newText;
+			this._callSubscriber(this._state);
+		}
 
+		if(action.type === 'ADD-MESSAGE') {
+			let newMessage = {
+				id: 4,
+				message: this._state.messagesPage.newMessageText,
+				likes: 10,
+				img:`${profileImg}` 
+			}
+			this._state.messagesPage.messagesData.push(newMessage);
+			this._state.messagesPage.newMessageText = '';
+			this._callSubscriber(this._state);
+		} else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+			this._state.messagesPage.newMessageText = action.newText;
+			this._callSubscriber(this._state);
+		}
+	}
+	
 }
 
 export default store;
