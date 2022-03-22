@@ -8,7 +8,7 @@ import reduxStore from './Redux/redux-store';
 export let rerenderEntireTree = (state) => {
 	ReactDOM.render(
 		<React.StrictMode>
-		<App state={state} dispatch={reduxStore.dispatch.bind(reduxStore)} />
+		<App state={state} dispatch={reduxStore.dispatch.bind(reduxStore)} reduxStore={reduxStore}/>
 		</React.StrictMode>,
 		document.getElementById('root')
 	);
@@ -16,5 +16,8 @@ export let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(reduxStore.getState());
 
-reduxStore.subscribe(rerenderEntireTree);
+reduxStore.subscribe(() => {
+	let state = reduxStore.getState();
+	rerenderEntireTree(state);
+});
 
