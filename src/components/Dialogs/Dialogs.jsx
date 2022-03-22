@@ -1,6 +1,7 @@
 import cl from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogITem';
 import MessageItem from './MessageItem/MessageItem';
+import AddMessage from './AddMessage/AddMessage';
 
 const Dialogs = (props) => {
 
@@ -21,6 +22,7 @@ const Dialogs = (props) => {
 				{messageElements}
 				</ul>
 			</div>
+			<AddMessage />
 		</div>
 	);
 }

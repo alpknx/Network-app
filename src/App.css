@@ -10,7 +10,7 @@
 	display: grid;
 	grid-gap: 8px;
 	grid-area: appLayout;
-	grid-template-columns: 1fr 10fr;
+	grid-template-columns: 1fr 7fr;
 	grid-template-areas:
 	"appHeader appHeader"
 	"sidebar appContent";
@@ -32,7 +32,6 @@
 	display: block;
 	grid-area: sidebar;
 	background-color: #FFFFFF;
-	width: 149px;
    position: relative;
 	border-radius: 5px;
 	text-align: center;
