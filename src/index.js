@@ -3,19 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state, {onAddPost, updateNewPostText, onAddMessage, updateNewMessageText, subscribe} from './Redux/state';
+import store from './Redux/state';
 
-let rerenderEntireTree = (state) => {
+export let rerenderEntireTree = (state) => {
 	ReactDOM.render(
 		<React.StrictMode>
-		<App state={state} onAddPost={onAddPost} updateNewPostText = {updateNewPostText}
-				onAddMessage={onAddMessage} updateNewMessageText={updateNewMessageText}/>
+		<App state={state} 
+				onAddPost={store.onAddPost.bind(store)} 
+				updateNewPostText = {store.updateNewPostText.bind(store)}
+				onAddMessage={store.onAddMessage.bind(store)} 
+				updateNewMessageText={store.updateNewMessageText.bind(store)}/>
 		</React.StrictMode>,
 		document.getElementById('root')
 	);
 } 
 
-rerenderEntireTree(state);
+rerenderEntireTree(store.getState());
 
-subscribe(rerenderEntireTree);
+store.subscribe(rerenderEntireTree);
 
