@@ -1,3 +1,4 @@
+import { rerenderEntireTree } from '../render';
 import profileImg from './../components/assets/img/profile-img.png';
 
 
@@ -38,6 +39,17 @@ let state = {
 		]
 	}
 
+}
+
+export let onAddPost = (postMessage) => {
+	let newPost = {
+		id: 4,
+		message: postMessage,
+		likes: 10,
+		img:`${profileImg}` 
+	}
+	state.profilePage.postsData.push(newPost);
+	rerenderEntireTree(state);
 }
 
 export default state;

@@ -1,12 +1,14 @@
 import React, { createRef } from 'react';
 import cl from './AddPost.module.css';
 
-const AddPost = () => {
+const AddPost = (props) => {
 
 	let newPostElement = React.createRef();
 
 	let onAddPost = () => {
 		let text = newPostElement.current.value;
+		props.onAddPost(text);
+		newPostElement.current.value = '';
 	}
 
 	return (
