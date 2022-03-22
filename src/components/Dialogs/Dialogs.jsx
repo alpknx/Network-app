@@ -2,12 +2,14 @@ import cl from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogITem';
 import MessageItem from './MessageItem/MessageItem';
 import AddMessage from './AddMessage/AddMessage';
+import AddMessageContainer from './AddMessage/AddMessageContainer';
 
 const Dialogs = (props) => {
+	let state = props.messagesPage;
 
-	let dialogElements = props.dialogsData.map(dialog=> <DialogItem img={dialog.img} name={dialog.name} id={dialog.id}/>);
+	let dialogElements = state.dialogsData.map(dialog=> <DialogItem img={dialog.img} name={dialog.name} id={dialog.id}/>);
 
-	let messageElements = props.messagesData.map(messageItem=> <MessageItem img={messageItem.img} message={messageItem.message}/>);
+	let messageElements = state.messagesData.map(messageItem=> <MessageItem img={messageItem.img} message={messageItem.message}/>);
 		
 	return (
 		<div className={cl.dialogs_page}>
@@ -22,7 +24,7 @@ const Dialogs = (props) => {
 				{messageElements}
 				</ul>
 			</div>
-			<AddMessage dispatch={props.dispatch}/>
+			<AddMessageContainer reduxStore={props.reduxStore}/>
 		</div>
 	);
 }

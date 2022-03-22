@@ -5,15 +5,17 @@ import cl from './AddMessage.module.css'
 
 const AddMessage = (props) => {
 
+	let state = props.messagesPage;
+
 	let newMessageElement = React.createRef();
 
 	let onAddMessage = () => {
-		props.dispatch((onAddMessageActionCreator()));
+		props.sendMessage();
 	}
 
-	let onMessageChange =() =>  {
-		let text = newMessageElement.current.value;
-		props.dispatch(updateNewMessageTextActionCreator(text));
+	let onMessageChange =(e) =>  {
+		let text = e.target.value;
+		props.updateNewMessageText(text);
 	}
 	
 	return(

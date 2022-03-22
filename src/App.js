@@ -8,6 +8,7 @@ import Users from './../src/components/Users/Users';
 import News from './../src/components/News/News';
 import Music from './../src/components/Music/Music';
 import Settings from './../src/components/Settings/Settings';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const  App = (props) =>  {
 	return (
@@ -25,9 +26,7 @@ const  App = (props) =>  {
 							<Route path="/profile" 
 									element={<Profile reduxStore={props.reduxStore}/>} />
 							<Route path="/dialogs/*" 
-									element={<Dialogs dialogsData={props.state.messagesPage.dialogsData}
-									messagesData={props.state.messagesPage.messagesData}
-									dispatch={props.dispatch}/>}/>
+									element={<DialogsContainer reduxStore={props.reduxStore}/>}/>
 							<Route path="/users" element={<Users/>} />
 							<Route path="/news" element={<News/>} />
 							<Route path="/music" element={<Music/>} />
