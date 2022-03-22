@@ -10,7 +10,7 @@ let state = {
 		{id: 2, message: 'It is my first Post', likes: 11, img:`${profileImg}`},
 		{id: 3, message: 'Second', likes: 10, img:`${profileImg}`},
 		],
-
+		newPostText: ''
 	},
 
 	messagesPage : {
@@ -29,6 +29,7 @@ let state = {
 			{id: 4, message: 'I missed about you', img:`${profileImg}`},
 			{id: 5, message: 'Once upon a time', img:`${profileImg}`}
 		],
+		newMessageText:''
 	},
 
 	sidebar: {
@@ -41,15 +42,39 @@ let state = {
 
 }
 
-export let onAddPost = (postMessage) => {
+export let onAddPost = () => {
 	let newPost = {
 		id: 4,
-		message: postMessage,
+		message: state.profilePage.newPostText,
 		likes: 10,
 		img:`${profileImg}` 
 	}
 	state.profilePage.postsData.push(newPost);
+	state.profilePage.newPostText = '';
 	rerenderEntireTree(state);
 }
+
+export let updateNewPostText = (newText) => {
+	state.profilePage.newPostText = newText;
+	rerenderEntireTree(state);
+}
+
+export let onAddMessage = () => {
+	let newMessage = {
+		id: 4,
+		message: state.messagesPage.newMessageText,
+		likes: 10,
+		img:`${profileImg}` 
+	}
+	state.messagesPage.messagesData.push(newMessage);
+	state.messagesPage.newMessageText = '';
+	rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (newText) => {
+	state.messagesPage.newMessageText = newText;
+	rerenderEntireTree(state);
+}
+
 
 export default state;

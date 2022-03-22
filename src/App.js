@@ -23,12 +23,14 @@ const  App = (props) =>  {
 					<div className="app_content">
 						<Routes>
 							<Route path="/profile" 
-									element={<Profile postsData={props.state.profilePage.postsData}
-									onAddPost={props.onAddPost}
+									element={<Profile profilePage={props.state.profilePage}
+									onAddPost={props.onAddPost} updateNewPostText={props.updateNewPostText}
 									/>} />
 							<Route path="/dialogs/*" 
 									element={<Dialogs dialogsData={props.state.messagesPage.dialogsData}
-									messagesData={props.state.messagesPage.messagesData}/>} />
+									messagesData={props.state.messagesPage.messagesData}
+									onAddMessage = {props.onAddMessage}
+									updateNewMessageText={props.updateNewMessageText}/>} />
 							<Route path="/users" element={<Users/>} />
 							<Route path="/news" element={<News/>} />
 							<Route path="/music" element={<Music/>} />
