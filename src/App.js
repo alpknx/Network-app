@@ -9,6 +9,7 @@ import News from './../src/components/News/News';
 import Music from './../src/components/Music/Music';
 import Settings from './../src/components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import SidebarContainer from './components/SideBar/SideBarContainer';
 
 const  App = (props) =>  {
 	return (
@@ -19,7 +20,7 @@ const  App = (props) =>  {
 						<Header/>
 					</div>
 					<div className='side_bar'>
-						<SideBar friends={props.state.sidebar.friends}/>
+						<SidebarContainer/>
 					</div>
 					<div className="app_content">
 						<Routes>
