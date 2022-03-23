@@ -1,7 +1,11 @@
+.user_wrapper_inner {
+	display: grid;
+	grid-gap: 16px;
+}
+
 .user_profile{
 	display: flex;
 	height: fit-content;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	background-color: #FFFFFF;
 	border-radius: 5px;
 }
@@ -38,15 +42,12 @@
 }
 
 .user_name {
-	margin: 8px;
-	padding: 8px;
+	margin: 16px;
 	
 }
 
 .user_location {
-	margin: 8px;
-	padding: 8px;
+	margin: 16px;
 	flex-grow:1;
 	text-align: right;	
 }
-

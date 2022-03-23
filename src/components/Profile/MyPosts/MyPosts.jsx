@@ -2,10 +2,9 @@ import cl from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-
 	let postElements = 
 		props.postsData.map(postItem => <Post img={postItem.img} 
-			message={postItem.message} likes={postItem.likes} key={postItem.id}/>);
+			fullName={postItem.message} likes={postItem.likes} key={postItem.id}/>);
 
 	return (
 		<div className={cl.posts_list}>
