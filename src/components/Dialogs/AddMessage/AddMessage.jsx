@@ -1,11 +1,7 @@
 import React from 'react';
-import { onAddMessageActionCreator, updateNewMessageTextActionCreator } from '../../../Redux/messages-reducer';
-
 import cl from './AddMessage.module.css'
 
 const AddMessage = (props) => {
-
-	let state = props.messagesPage;
 
 	let newMessageElement = React.createRef();
 
@@ -21,7 +17,8 @@ const AddMessage = (props) => {
 	return(
 		<div className={cl.add_message}>
 			<div className={cl.message_textarea}>
-				<textarea onChange={onMessageChange} ref={newMessageElement}></textarea>
+				<textarea onChange={onMessageChange} 
+				ref={newMessageElement} value = {props.newMessageText}></textarea>
 			</div>
 			<div className={cl.add_message_button}>
 				<button onClick={ onAddMessage }>Add Message</button>

@@ -24,15 +24,21 @@ let initialState = {
 const messagesReducer = (state = initialState , action) => {
 	switch (action.type) {
 		case ADD_MESSAGE:{
-			let text = state.newMessageText;
+			let newMessage = {
+				id: 6,
+				message: state.newMessageText,
+				img:`${profileImg}` 
+				};
+			debugger;
 			return{
 				...state,
+				messagesData: [...state.messagesData, newMessage],
 				newMessageText: '',
-				messagesData: [...state.messagesData, {id:6, message: text, img:`${profileImg}`}]
 			}
 		}
 
 		case UPDATE_NEW_MESSAGE_TEXT: {
+			debugger;
 			return{
 				...state,
 				newMessageText: action.newText
