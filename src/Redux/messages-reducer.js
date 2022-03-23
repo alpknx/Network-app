@@ -22,24 +22,21 @@ let initialState = {
 }
 
 const messagesReducer = (state = initialState , action) => {
-	let stateCopy ;
 	switch (action.type) {
 		case ADD_MESSAGE:{
 			let text = state.newMessageText;
-			stateCopy = {
+			return{
 				...state,
 				newMessageText: '',
 				messagesData: [...state.messagesData, {id:6, message: text, img:`${profileImg}`}]
 			}
-			return stateCopy;
 		}
 
 		case UPDATE_NEW_MESSAGE_TEXT: {
-			stateCopy = {
+			return{
 				...state,
 				newMessageText: action.newText
 			}
-			return stateCopy;
 		}
 			
 		default:
