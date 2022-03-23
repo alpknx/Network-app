@@ -24,7 +24,7 @@ const Dialogs = (props) => {
 				{messageElements}
 				</ul>
 			</div>
-			<AddMessageContainer reduxStore={props.reduxStore}/>
+			<AddMessageContainer/>
 		</div>
 	);
 }

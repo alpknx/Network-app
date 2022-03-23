@@ -1,10 +1,17 @@
+import StoreContext from '../../StoreContext';
 import Dialogs from './Dialogs';
 
 const DialogsContainer = (props) => {
-	let state = props.reduxStore. getState().messagesPage;
-		
 	return (
-		<Dialogs messagesPage={state} reduxStore={props.reduxStore}/>
+		<StoreContext.Consumer>
+			{(reduxStore) => {
+				let state = reduxStore. getState().messagesPage;
+				return(
+					<Dialogs messagesPage={state}/>
+				);
+			}
+		}
+		</StoreContext.Consumer>
 	);
 }
 

@@ -8,8 +8,8 @@ const Profile = (props) => {
 		<div className={cl.app_content_inner}>
 			<div className={cl.profile_content}>
 				<ProfileInfo/>
-				<AddPostContainer reduxStore={props.reduxStore} />
-				<MyPostsContainer reduxStore={props.reduxStore} />
+				<AddPostContainer />
+				<MyPostsContainer />
 			</div>
 		</div>
 	);
