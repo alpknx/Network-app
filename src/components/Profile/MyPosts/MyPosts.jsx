@@ -5,7 +5,7 @@ const MyPosts = (props) => {
 
 	let postElements = 
 		props.postsData.map(postItem => <Post img={postItem.img} 
-			message={postItem.message} likes={postItem.likes}/>);
+			message={postItem.message} likes={postItem.likes} key={postItem.id}/>);
 
 	return (
 		<div className={cl.posts_list}>

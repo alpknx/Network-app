@@ -10,7 +10,8 @@ import Friends from './SideBarItem/Friends/Friends';
 
 const SideBar = (props) => {
 
-	let friendsRow = props.friends.map(friend => <Friends img={friend.img} name={friend.name}/>);
+	let friendsRow = props.friends.map(friend => <Friends img={friend.img}
+							name={friend.name} key={friend.id}/>);
 
 	return (
 		<div className={cl.side_bar_inner}>
