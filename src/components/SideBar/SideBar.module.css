@@ -13,9 +13,3 @@
 	padding: 0;
 	margin: 8px;
 }
-.friends {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	text-align: center;
-}
