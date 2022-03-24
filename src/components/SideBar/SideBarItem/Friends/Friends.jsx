@@ -4,6 +4,13 @@ import { NavLink } from 'react-router-dom';
 import cl from './Friends.module.css';
 
 const Friends = (props) => {
+
+	let pagesCount = Math.ceil(props.friendsCount /props.pageSize) ;
+		let pages = [];
+		for (let i = 1; i <= pagesCount; i++) {
+			pages.push(i);
+		}
+
 	return(
 		<li className={cl.friends}>
 			{props.friends.map(friend =>

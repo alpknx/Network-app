@@ -1,9 +1,10 @@
 import SideBar from './SideBar';
 import { connect } from 'react-redux';
-import {setFriendsAC,setFriendProfileAC,setFriendsCountAC,toggleIsFetchingAC} from '../../Redux/sidebar-reducer';
+import {setFriendsAC,setFriendProfileAC,toggleIsFetchingAC,setFriendsCountAC,setCurrentPageAC} from '../../Redux/sidebar-reducer';
 import React from 'react';
 import * as axios from 'axios';
 import { useMatch } from 'react-router-dom';
+import Preloader from '../Preloader/Preloader';
 
 class SidebarContainer extends React.Component {
 	componentDidMount() {
@@ -23,10 +24,18 @@ class SidebarContainer extends React.Component {
 	}
 
 	render() {
-		return(
-			<SideBar {...this.props} friends={this.props.friends}/>
+		return (
+			<>
+			{this.props.isFetching ? <Preloader/> : null}
+			<SideBar friendsCount={this.props.friendsCount}
+					friends = {this.props.friends}
+					currentPage = {this.props.currentPage}
+					pageSize = {this.props.pageSize}
+					/>
+			</>
 		);
-	}
+
+	}	
 }
 
 const FriendURLMatch = (props) => {
@@ -37,9 +46,11 @@ const FriendURLMatch = (props) => {
 let mapStateToProps =(state) => {
 	return {
 		friends: state.sidebar.friends,
+		pageSize: state.sidebar.pageSize,
 		isFetching : state.sidebar.isFetching,
-		friendsCount: state.usersPage.friendsCount,
+		friendsCount: state.sidebar.friendsCount,
+		currentPage: state.sidebar.currentPage,
 	}
 }
 
-export default connect(mapStateToProps, {setFriendsAC,setFriendsCountAC, setFriendProfileAC,toggleIsFetchingAC}) (FriendURLMatch) 
+export default connect(mapStateToProps, {setFriendsAC,setFriendProfileAC,setFriendsCountAC,toggleIsFetchingAC,setCurrentPageAC}) (FriendURLMatch) 
