@@ -1,6 +1,6 @@
 import SideBar from './SideBar';
 import { connect } from 'react-redux';
-import {setFriendsAC,setFriendProfileAC,toggleIsFetchingAC,setFriendsCountAC,setCurrentPageAC} from '../../Redux/sidebar-reducer';
+import {getFriends,FriendProfile, setFriendsCountAC,setCurrentPageAC} from '../../Redux/sidebar-reducer';
 import React from 'react';
 import { useMatch } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
@@ -8,19 +8,10 @@ import { sidebarApi } from '../../api/api';
 
 class SidebarContainer extends React.Component {
 	componentDidMount() {
-		this.props.toggleIsFetchingAC(true);
-		sidebarApi.getFriends(this.props.currentPage, this.props.pageSize)
-			.then(data => {
-				this.props.toggleIsFetchingAC(false);
-				this.props.setFriendsAC(data.items);
-				//this.props.setFriendsCountAC(response.data.totalCount);
-			});
-
+		this.props.getFriends(this.props.currentPage, this.props.pageSize);
 		let friendId = this.props.match ? this.props.match.params.userId : '22860';
-		sidebarApi.getFriendProfile(friendId)
-			.then(data => {
-				this.props.setFriendProfileAC(data);
-			});
+		this.props.FriendProfile(friendId);
+		
 	}
 
 	render() {
@@ -53,4 +44,4 @@ let mapStateToProps =(state) => {
 	}
 }
 
-export default connect(mapStateToProps, {setFriendsAC,setFriendProfileAC,setFriendsCountAC,toggleIsFetchingAC,setCurrentPageAC}) (FriendURLMatch) 
+export default connect(mapStateToProps, {getFriends,FriendProfile,setFriendsCountAC,setCurrentPageAC}) (FriendURLMatch) 
