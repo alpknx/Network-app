@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Users from './Users';
 import { followAC, setUsersAC, unFollowAC, setCurrentPageAC,
-			setTotalUsersCountAC, toggleIsFetchingAC } from '../../Redux/users-reducer';
+			setTotalUsersCountAC, toggleIsFetchingAC, toggleFollowingProgressAC } from '../../Redux/users-reducer';
 import Preloader from '../Preloader/Preloader';
 import {usersAPI} from '../../api/api';
 
@@ -33,16 +33,20 @@ class  UsersContainer extends React.Component{
 		usersAPI.postFollow(userId)
 		.then(data => {
 				if (data.resultCode === 0) {
+					this.props.toggleFollowingProgress(true, userId);
 					this.props.follow(userId);
+					this.props.toggleFollowingProgress(false, userId);
 				}
-		});
-	}
-
+			});
+		}
+		
 	setUnFollow = (userId) => {
 		usersAPI.deleteFollow(userId)
 		.then(data => {
-				if (data.resultCode === 0) {
-					this.props.unfollow(userId);
+			if (data.resultCode === 0) {
+				this.props.toggleFollowingProgress(true, userId);
+				this.props.unfollow(userId);
+				this.props.toggleFollowingProgress(false, userId);
 				}
 		});
 	}
@@ -58,6 +62,8 @@ class  UsersContainer extends React.Component{
 					users = {this.props.users}
 					follow = {this.setFollow}
 					unfollow = {this.setUnFollow}
+					toggleFollowingProgress={this.props.toggleFollowingProgress}
+               followingInProgress={this.props.followingInProgress}
 					/>
 			</>
 		);
@@ -71,7 +77,8 @@ let mapStateToProps = (state) => {
 	pageSize: state.usersPage.pageSize,
 	totalUsersCount: state.usersPage.totalUsersCount,
 	currentPage: state.usersPage.currentPage,
-	isFetching : state.usersPage.isFetching
+	isFetching : state.usersPage.isFetching,
+	followingInProgress: state.usersPage.followingInProgress
 	}	
 }
 
@@ -81,5 +88,6 @@ export default connect(mapStateToProps, {
 	setUsers:setUsersAC,
 	setCurrentPage:setCurrentPageAC,
 	setTotalUsersCount: setTotalUsersCountAC,
-	toggleIsFetching:toggleIsFetchingAC
+	toggleIsFetching:toggleIsFetchingAC,
+	toggleFollowingProgress:toggleFollowingProgressAC
 	})(UsersContainer);

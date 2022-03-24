@@ -1,7 +1,6 @@
 import cl from './User.module.css';
 import profileImg from '../../assets/img/profile-img.png';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
 
 const User = (props) => {
 	return(
@@ -16,10 +15,14 @@ const User = (props) => {
 					</NavLink>
 					<div className={cl.button}>
 						{user.followed
-							? <button onClick={() => {
+							? <button disabled={props.followingInProgress.some(id => id === user.id)} 
+							onClick={() => {
+								props.toggleFollowingProgress(true, user.id);
 								props.unfollow(user.id);
+								props.toggleFollowingProgress(false, user.id);
 							} }>Unfollow</button>
-							: <button onClick={() => {
+							: <button  disabled={props.followingInProgress.some(id => id === user.id)} 
+							onClick={() => {
 								props.follow(user.id);
 							} }>Follow</button>}
 					</div>

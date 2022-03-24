@@ -1,4 +1,3 @@
-import * as  axios from 'axios';
 import User from './User/User';
 import cl from './Users.module.css';
 
@@ -18,7 +17,9 @@ const Users = (props) => {
 					onClick={(e) => { props.onPageChanged(page) }}><div className={cl.page_number}>{page}</div></div>
 				})}
 				</div>
-				<User users={props.users} follow={props.follow} unfollow={props.unfollow}/>
+				<User users={props.users} follow={props.follow} unfollow={props.unfollow}
+				toggleFollowingProgress={props.toggleFollowingProgress}
+				followingInProgress={props.followingInProgress}/>
 			</div>
 	);
 }
