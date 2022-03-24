@@ -1,0 +1,6 @@
+.users {
+	display: grid;
+	height: fit-content;
+	background-color: #C0C0C0;
+	grid-gap: 16px;
+}
