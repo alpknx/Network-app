@@ -10,7 +10,4 @@ let mapStateToProps =(state) => {
 	}
 }
 
-export default compose(
-	connect(mapStateToProps, null),
-	withAuthRedirect
-)(Dialogs); 
+export default connect(mapStateToProps, null)(Dialogs); 

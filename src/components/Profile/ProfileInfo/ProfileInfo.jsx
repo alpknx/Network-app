@@ -1,6 +1,7 @@
 import profileImg from './../../assets/img/profile-img.png'
 import cl from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
 	if (!props.profile) {
@@ -13,6 +14,7 @@ const ProfileInfo = (props) => {
 			</div>
 			<div className={cl.user_name}>
 				{props.profile.fullName}
+				<ProfileStatus status={"Hello my friends"}/>
 				<div>
 					Lokking For a Job: {props.profile.lookingForAJob}
 				</div>

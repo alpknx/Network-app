@@ -57,7 +57,7 @@ let mapStateToProps = (state) => {
 	}	
 }
 
-export default compose(withAuthRedirect, connect(mapStateToProps, {
+export default connect(mapStateToProps, {
 	follow:followAC,
 	unfollow:unFollowAC,
 	setCurrentPage:setCurrentPageAC,
@@ -65,5 +65,5 @@ export default compose(withAuthRedirect, connect(mapStateToProps, {
 	getUsersThunk: getUsersThunkCreator,
 	setPostFollowThunk: setPostFollowThunkCreator,
 	setDeleteFollowThunk: setDeleteFollowThunkCreator
-	})(UsersContainer));
+	})(UsersContainer);
 
