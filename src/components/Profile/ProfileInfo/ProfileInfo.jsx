@@ -6,14 +6,17 @@ const ProfileInfo = (props) => {
 	if (!props.profile) {
 		return <Preloader/>
 	}
-
 	return (
 		<div className={cl.user_info}>
 			<div className={cl.img_profile}>
 				<img src={props.profile.photos.large ? props.profile.photos.small : profileImg}/>
 			</div>
 			<div className={cl.user_name}>
-				{props.fullName}
+				{props.profile.fullName}
+				<div>
+					Lokking For a Job: {props.profile.lookingForAJob}
+				</div>
+				
 			</div>
 			<div className={cl.user_location}>
 				Moscow

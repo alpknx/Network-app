@@ -48,6 +48,6 @@ const profileReducer = (state = initialState , action) => {
 export const onAddPostActionCreator = () => ({type: ADD_POST});
 export const updateNewPostTextActionCreator = (text) => 
 	({type: UPDATE_NEW_POST_TEXT,newText: text});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setUserProfileAC = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export default profileReducer;

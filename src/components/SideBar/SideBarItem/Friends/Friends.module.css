@@ -1,6 +1,11 @@
 .friends {
-	display: inline-flex;
+	display: grid;
 	text-align: center;
+}
+
+.friends_ifnfo {
+	width: 50px;
+	height: 60px;
 }
 
 .friends_info img {
