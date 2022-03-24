@@ -1,9 +1,7 @@
 import cl from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogITem';
 import MessageItem from './MessageItem/MessageItem';
-import AddMessage from './AddMessage/AddMessage';
 import AddMessageContainer from './AddMessage/AddMessageContainer';
-import { Navigate } from 'react-router-dom';
 
 const Dialogs = (props) => {
 	let state = props.messagesPage;
@@ -13,8 +11,6 @@ const Dialogs = (props) => {
 
 	let messageElements = state.messagesData.map(messageItem=> <MessageItem img={messageItem.img} 
 								key={messageItem.id} message={messageItem.message}/>);
-
-	if(!props.isAuth) return <Navigate to='/login'/>
 		
 	return (
 		<div className={cl.dialogs_page}>
