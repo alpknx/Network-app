@@ -1,7 +1,6 @@
 import cl from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogITem';
 import MessageItem from './MessageItem/MessageItem';
-import AddMessage from './AddMessage/AddMessage';
 import AddMessageContainer from './AddMessage/AddMessageContainer';
 
 const Dialogs = (props) => {

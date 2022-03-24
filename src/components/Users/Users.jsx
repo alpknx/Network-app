@@ -1,43 +1,26 @@
-import profileImg from '../assets/img/profile-img.png';
 import User from './User/User';
 import cl from './Users.module.css';
 
 const Users = (props) => {
 
-	if (props.users.length === 0) {
-		props.setUsers([
-			{
-				id: 1, 
-				followed:true, 
-				fullName: 'Alexander', 
-				status: "Looking new opportunity ", 
-				img:`${profileImg}`,
-				location: {city:"Moscow", country: "Russia"}
-			},
-			{
-				id: 2, 
-				followed:true, 
-				fullName: 'Ivan', 
-				status: "Looking new opportunity ", 
-				img:`${profileImg}`,
-				location: {city:"Moscow", country: "Russia"}
-			},
-			{
-				id: 3, 
-				followed:true, 
-				fullName: 'Pavel', 
-				status: "Looking new opportunity ", 
-				img:`${profileImg}`,
-				location: {city:"Moscow", country: "Russia"}
-			}
-		])
-	}
+	let pagesCount = Math.ceil(props.totalUsersCount /props.pageSize) ;
+		let pages = [];
+		for (let i = 1; i <= pagesCount; i++) {
+			pages.push(i);
+		}
 
-	debugger;
 	return (
 		<div className={cl.users}>
-			<User users={props.users} follow={props.follow} unfollow={props.unfollow}/>
-		</div>
+				<div className={cl.pages_numbers}>
+				{ pages.map( page => {
+					return <div className={props.currentPage === page && cl.selected}
+					onClick={(e) => { props.onPageChanged(page) }}><div className={cl.page_number}>{page}</div></div>
+				})}
+				</div>
+				<User users={props.users} follow={props.follow} unfollow={props.unfollow}
+				toggleFollowingProgress={props.toggleFollowingProgress}
+				followingInProgress={props.followingInProgress}/>
+			</div>
 	);
 }
 
