@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
 			</div>
 			<div className={cl.user_name}>
 				{props.profile.fullName}
-				<ProfileStatus status={"Hello my friends"}/>
+				<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
 				<div>
 					Lokking For a Job: {props.profile.lookingForAJob}
 				</div>
