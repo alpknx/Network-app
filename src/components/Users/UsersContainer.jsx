@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
-import * as  axios from 'axios';
 import React from 'react';
 import Users from './Users';
 import { followAC, setUsersAC, unFollowAC, setCurrentPageAC,
 			setTotalUsersCountAC, toggleIsFetchingAC } from '../../Redux/users-reducer';
 import Preloader from '../Preloader/Preloader';
+import {usersAPI} from '../../api/api';
 
 class  UsersContainer extends React.Component{
 
 	componentDidMount() {
 		this.props.toggleIsFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-			.then(response => {
+		usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+		.then(data => {
 				this.props.toggleIsFetching(false);
-				this.props.setUsers(response.data.items);
-				//this.props.setTotalUsersCount(response.data.totalCount);
+				this.props.setUsers(data.items);
+				//this.props.setTotalUsersCount(data.totalCount);
 			});
 		
 	}
@@ -22,11 +22,29 @@ class  UsersContainer extends React.Component{
 	onPageChanged = (pageNumber) => {
 		this.props.setCurrentPage(pageNumber);
 		this.props.toggleIsFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-			.then(response => {
+		usersAPI.getUsers(pageNumber, this.props.pageSize)
+            .then(data => {
 				this.props.toggleIsFetching(false);
-				this.props.setUsers(response.data.items);
+				this.props.setUsers(data.items);
 			});
+	}
+
+	setFollow = (userId) => {
+		usersAPI.postFollow(userId)
+		.then(data => {
+				if (data.resultCode === 0) {
+					this.props.follow(userId);
+				}
+		});
+	}
+
+	setUnFollow = (userId) => {
+		usersAPI.deleteFollow(userId)
+		.then(data => {
+				if (data.resultCode === 0) {
+					this.props.unfollow(userId);
+				}
+		});
 	}
 
 	render() {
@@ -38,8 +56,8 @@ class  UsersContainer extends React.Component{
 					currentPage = {this.props.currentPage}
 					onPageChanged = {this.onPageChanged}
 					users = {this.props.users}
-					follow = {this.props.follow}
-					unfollow = {this.props.unfollow}
+					follow = {this.setFollow}
+					unfollow = {this.setUnFollow}
 					/>
 			</>
 		);

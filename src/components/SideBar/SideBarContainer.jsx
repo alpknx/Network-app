@@ -2,24 +2,24 @@ import SideBar from './SideBar';
 import { connect } from 'react-redux';
 import {setFriendsAC,setFriendProfileAC,toggleIsFetchingAC,setFriendsCountAC,setCurrentPageAC} from '../../Redux/sidebar-reducer';
 import React from 'react';
-import * as axios from 'axios';
 import { useMatch } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
+import { sidebarApi } from '../../api/api';
 
 class SidebarContainer extends React.Component {
 	componentDidMount() {
 		this.props.toggleIsFetchingAC(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-			.then(response => {
+		sidebarApi.getFriends(this.props.currentPage, this.props.pageSize)
+			.then(data => {
 				this.props.toggleIsFetchingAC(false);
-				this.props.setFriendsAC(response.data.items);
+				this.props.setFriendsAC(data.items);
 				//this.props.setFriendsCountAC(response.data.totalCount);
 			});
 
 		let friendId = this.props.match ? this.props.match.params.userId : '22860';
-		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${friendId}`)
-			.then(response => {
-				this.props.setFriendProfileAC(response.data);
+		sidebarApi.getFriendProfile(friendId)
+			.then(data => {
+				this.props.setFriendProfileAC(data);
 			});
 	}
 
