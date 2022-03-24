@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { followAC, setUsersAC, unFollowAC } from '../../Redux/users-reducer';
-import Users from './Users';
+import UsersClass from './UsersClass';
 
 let mapStateToProps = (state) => {
 	return {
@@ -22,6 +22,6 @@ let mapDispatchToProps = (dispatch) => {
 	}
 }
 
-const UsersConstainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+const UsersConstainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass);
 
 export default UsersConstainer;
