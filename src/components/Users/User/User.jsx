@@ -1,4 +1,5 @@
 import cl from './User.module.css';
+import profileImg from '../../assets/img/profile-img.png';
 
 const User = (props) => {
 	return(
@@ -7,7 +8,7 @@ const User = (props) => {
 			<div className={cl.user_profile} key={user.id}>
 				<div className={cl.image_and_button}>
 					<div className={cl.img_profile}>
-						<img src={user.img}/>
+						<img src={user.photos.small !== null ? user.photos.small : profileImg}/>
 					</div>
 					<div className={cl.button}>
 						{user.followed
@@ -22,7 +23,7 @@ const User = (props) => {
 				<div className={cl.user_info}>
 					<div className={cl.user_name}>
 						<div>
-							{user.fullName}
+							{user.name}
 						</div>
 						<div>
 							{user.status}
@@ -30,10 +31,10 @@ const User = (props) => {
 					</div>
 					<div className={cl.user_location}>
 						<div>
-							{user.location.country}
+							"user.location.country"
 						</div>
 						<div>
-							{user.location.city}
+							"user.location.city"
 						</div>
 					</div>
 				</div>
