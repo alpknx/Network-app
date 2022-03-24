@@ -80,4 +80,11 @@ let mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+	follow:followAC,
+	unfollow:unFollowAC,
+	setUsers:setUsersAC,
+	setCurrentPage:setCurrentPageAC,
+	setTotalUsersCount: setTotalUsersCountAC,
+	toggleIsFetching:toggleIsFetchingAC
+	})(UsersContainer);
