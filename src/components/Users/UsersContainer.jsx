@@ -4,7 +4,6 @@ import Users from './Users';
 import { followAC,unFollowAC, setCurrentPageAC, toggleFollowingProgressAC, getUsersThunkCreator 
 	,setPostFollowThunkCreator, setDeleteFollowThunkCreator} from '../../Redux/users-reducer';
 import Preloader from '../Preloader/Preloader';
-import {usersAPI} from '../../api/api';
 
 class  UsersContainer extends React.Component{
 
