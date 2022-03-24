@@ -2,9 +2,8 @@ import SideBar from './SideBar';
 import { connect } from 'react-redux';
 import {getFriends,FriendProfile, setFriendsCountAC,setCurrentPageAC} from '../../Redux/sidebar-reducer';
 import React from 'react';
-import { useMatch } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
-import { sidebarApi } from '../../api/api';
+import { useMatch } from 'react-router-dom';
 
 class SidebarContainer extends React.Component {
 	componentDidMount() {
@@ -41,6 +40,7 @@ let mapStateToProps =(state) => {
 		isFetching : state.sidebar.isFetching,
 		friendsCount: state.sidebar.friendsCount,
 		currentPage: state.sidebar.currentPage,
+		isAuth: state.auth.isAuth
 	}
 }
 
