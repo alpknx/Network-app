@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import News from './../src/components/News/News';
@@ -9,8 +10,23 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import SideBar from './components/SideBar/SideBar';
+import {initializeApp} from './Redux/app-reducer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import Preloader from './components/Preloader/Preloader';
 
-const  App = (props) =>  {
+
+class App extends Component {
+
+	componentDidMount() {
+		this.props.initializeApp();;
+	}
+
+	render() {
+		if (!this.props.initialized) {
+			return <Preloader/>
+		}
+
 	return (
 		<BrowserRouter>
 			<div className='app_wrapper'>
@@ -39,6 +55,11 @@ const  App = (props) =>  {
 			</div>
 		</BrowserRouter>
 	);
+	}	
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+	initialized: state.app.initialized
+})
+
+export default compose(connect(mapStateToProps, {initializeApp}))(App);
