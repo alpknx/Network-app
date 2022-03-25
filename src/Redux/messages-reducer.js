@@ -1,6 +1,5 @@
 import profileImg from './../components/assets/img/profile-img.png';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const SEND_MESSAGE = 'SEND_MESSAGE';
 
 let initialState = {
 	dialogsData:[
@@ -18,41 +17,21 @@ let initialState = {
 		{id: 4, message: 'I missed about you', img:`${profileImg}`},
 		{id: 5, message: 'Once upon a time', img:`${profileImg}`}
 	],
-	newMessageText:''
 }
 
 const messagesReducer = (state = initialState , action) => {
 	switch (action.type) {
-		case ADD_MESSAGE:{
-			let newMessage = {
-				id: 6,
-				message: state.newMessageText,
-				img:`${profileImg}` 
-				};
-			debugger;
-			return{
+		case SEND_MESSAGE:
+			let body = action.newMessageBody;
+			return {
 				...state,
-				messagesData: [...state.messagesData, newMessage],
-				newMessageText: '',
-			}
-		}
-
-		case UPDATE_NEW_MESSAGE_TEXT: {
-			debugger;
-			return{
-				...state,
-				newMessageText: action.newText
-			}
-		}
-			
+				messagesData: [...state.messagesData, {id: 6, message: body, img:`${profileImg}`}]
+			};
 		default:
-			return state;
+         return state;
 	}
 
 }
-
-export const onAddMessageActionCreator = () => ({type: ADD_MESSAGE})
-export const updateNewMessageTextActionCreator = (text) => 
-	({type: UPDATE_NEW_MESSAGE_TEXT,newText: text})
+export const sendMessageCreator = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody})
 
 export default messagesReducer;

@@ -1,31 +1,41 @@
 import React from 'react';
 import cl from './AddMessage.module.css'
+import {Formik, Form, Field} from 'formik';
 
 const AddMessage = (props) => {
 
 	let newMessageElement = React.createRef();
-
-	let onAddMessage = () => {
-		props.sendMessage();
-	}
-
-	let onMessageChange =(e) =>  {
-		let text = e.target.value;
-		props.updateNewMessageText(text);
-	}
-	
 	return(
 		<div className={cl.add_message}>
-			<div className={cl.message_textarea}>
-				<textarea onChange={onMessageChange} 
-				ref={newMessageElement} value = {props.newMessageText}></textarea>
-			</div>
-			<div className={cl.add_message_button}>
-				<button onClick={ onAddMessage }>Add Message</button>
-			</div>
+			<AddMessageForm sendMessage={props.sendMessage}/>
 		</div>
 	);
 
 }
+
+const AddMessageForm = (props) => {
+	debugger;
+	return (
+			<Formik initialValues={{newMessageBody: ""}}
+					onSubmit={(values) => {
+							props.sendMessage(values.newMessageBody);
+					}
+					}>
+				{() => (
+					<Form>
+							<div className = {cl.message_textarea}>
+								<Field component={'textarea'}
+										name={'newMessageBody'}
+										placeholder={'Enter your message'}/>
+							</div>
+	
+							<div className={cl.add_message_button}>
+								<button type={'submit'}>Send</button>
+							</div>
+					</Form>
+				)}
+			</Formik>
+		)
+	}
 
 export default AddMessage;
