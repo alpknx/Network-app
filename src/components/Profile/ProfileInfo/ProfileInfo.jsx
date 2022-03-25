@@ -2,6 +2,7 @@ import profileImg from './../../assets/img/profile-img.png'
 import cl from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
 import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
 	if (!props.profile) {
@@ -14,7 +15,7 @@ const ProfileInfo = (props) => {
 			</div>
 			<div className={cl.user_name}>
 				{props.profile.fullName}
-				<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+				<ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
 				<div>
 					Lokking For a Job: {props.profile.lookingForAJob}
 				</div>
