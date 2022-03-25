@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 const loginFormSchema = Yup.object().shape({
-	name: Yup.string()
+	email: Yup.string()
 		//минимальная длина - 2 символа
 		.min(2, "Must be longer than 2 characters")
 		//максимальная длина - 20 символов

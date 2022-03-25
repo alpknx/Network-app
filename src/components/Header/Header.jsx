@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 import logoHeader from './../assets/img/logoHeader.png'
 import cl from './Header.module.css';
 
@@ -12,8 +12,9 @@ const Header = (props) => {
 				Network
 			</div>
 			<div className={cl.header_login}>
-			{ props.isAuth ? props.login
-               : <NavLink to={'/login'}>Login</NavLink> }
+			{ props.isAuth
+					? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
+					: <NavLink to={'/login'}>Login</NavLink> }
 			</div>
 		</div>
 	)

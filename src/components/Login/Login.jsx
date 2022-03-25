@@ -1,49 +1,72 @@
 import React from "react";
-import {Formik, Form, Field, ErrorMessage} from "formik";
-import loginFormSchema from "../FormValidation/LoginFormSchema";
+import {useFormik} from "formik";
+import {login} from '../../Redux/auth-reducer';
+import { connect } from "react-redux";
+import * as Yup from "yup";
+import { withAuthRedirect } from "../hoc/withAuthRedirect";
+import { compose } from "redux";
 
-const Login = () => (
-	<div>
-		<h1>Login</h1>
-		<Formik
-			initialValues={{email: "", password: "", rememberMe: false}}
-			validate={values => {
-					const errors = {};
-					if (!values.email) {
-						errors.email = 'Required';
-					} else if (
-						!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-					) {
-						errors.email = 'Invalid email address';
-					}
-					return errors;
-			}}
-			onSubmit={(values) => {
-					console.log(values)
-			}}
-			validationSchema={loginFormSchema}>
-			{() => (
-					<Form>
-						<div>
-							<Field type={'text'} name={'email'} placeholder={'e-mail'}/>
-						</div>
-						<ErrorMessage name="email" component="div"/>
+const Login = (props) => {
 
-						<div>
-							<Field type={'password'} name={'password'} placeholder={'password'}/>
-						</div>
-						<ErrorMessage name="password" component="div"/>
+	const formik = useFormik({
+		initialValues:{email: "", password: "", rememberMe: false},
+		validate:values => {
+			const errors = {};
+			if (!values.email) {
+				errors.email = 'Required';
+			} else if (
+				!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+			) {
+				errors.email = 'Invalid email address';
+			}
+			return errors;
+		},
+		onSubmit: (values)=> {
+				props.login(values.email, values.password, values.rememberMe)
+		},
+		validationSchema: Yup.object({
+		email: Yup.string()
+			//минимальная длина - 2 символа
+		.min(2, "Must be longer than 2 characters")
+			//максимальная длина - 20 символов
+		.max(20, "Nice try, nobody has a first name that long")
+		.required("Required"),
+			password: Yup.string()
+		.min(8, "Must be longer than 8 characters")
+		.required("Required")
+		})
+	})
 
-						<div>
-							<Field type={'checkbox'} name={'rememberMe'}/>
-							<label htmlFor={'rememberMe'}> remember me </label>
-						</div>
+	return(
+		<div>
+			<h1>Login</h1>
+				<form onSubmit={formik.handleSubmit}>
+					<div>
+						<input type={'email'} name={'email'} placeholder={'Email'} 
+						onChange={formik.handleChange} value={formik.values.email}/>
+						{formik.errors.email ? <p>{formik.errors.email}</p> : null}
+					</div>
 
-						<button type={'submit'}>Log in</button>
-					</Form>
-			)}
-		</Formik>
-	</div>
-);
+					<div>
+						<input type={'password'} name={'password'} placeholder={'password'} 
+						onChange={formik.handleChange} value={formik.values.password}/>
+						{formik.errors.password ? <p>{formik.errors.password}</p> : null}
+					</div>
 
-export default Login
+					<div>
+						<input type={'checkbox'} name={'rememberMe'} 
+						onChange={formik.handleChange} value={formik.values.rememberMe}/>
+						<label htmlFor={'rememberMe'}> remember me </label>
+					</div>
+
+					<button type={'submit'}>Log in</button>
+				</form>
+		</div>
+	);
+}
+
+const mapStateToProps = (state) => ({
+	isAuth: state.auth.isAuth
+})
+
+export default compose(connect(mapStateToProps, {login}))(Login)
