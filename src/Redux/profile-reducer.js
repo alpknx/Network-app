@@ -4,6 +4,7 @@ import profileImg from './../components/assets/img/profile-img.png';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
 	postsData: [
@@ -36,6 +37,9 @@ const profileReducer = (state = initialState , action) => {
 		}
 	}
 
+	case DELETE_POST:
+		return {...state, postsData: state.postsData.filter(p => p.id != action.postId)}
+
 		default:
 			return state;
 	}
@@ -45,6 +49,7 @@ const profileReducer = (state = initialState , action) => {
 export const onAddPostAC = (newPostBody) => ({type: ADD_POST, newPostBody});
 export const setUserProfileAC = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status})
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
 
 export const getUserProfile = (userId) => (dispatch) => {
 	profileAPI.getProfile(userId)
