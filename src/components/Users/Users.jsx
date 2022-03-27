@@ -14,7 +14,11 @@ const Users = (props) => {
 				<div className={cl.pages_numbers}>
 				{ pages.map( page => {
 					return <div className={props.currentPage === page && cl.selected}
-					onClick={(e) => { props.onPageChanged(page) }}><div className={cl.page_number}>{page}</div></div>
+					onClick={(e) => { props.onPageChanged(page) }}>
+						<div className={cl.page_number}>
+							{page}
+						</div>
+							</div>
 				})}
 				</div>
 				<User users={props.users} follow={props.follow} unfollow={props.unfollow}
