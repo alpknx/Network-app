@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import MyPosts from './MyPosts';
 
 let mapStateToProps =(state) => {
@@ -7,6 +8,4 @@ let mapStateToProps =(state) => {
 	}
 }
 
-const MyPostsContainer = connect(mapStateToProps, null) (MyPosts);
-
-export default MyPostsContainer;
+export default compose(connect(mapStateToProps, null)) (MyPosts);
