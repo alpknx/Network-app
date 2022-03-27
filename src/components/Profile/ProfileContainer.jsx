@@ -1,13 +1,12 @@
 import React from 'react';
 import Profile from './Profile';
-import {getStatus, getUserProfile, updateStatus, savePhoto} from "../../Redux/profile-reducer";
+import {getStatus, getUserProfile, updateStatus, savePhoto, saveProfile} from "../../Redux/profile-reducer";
 import { connect } from 'react-redux';
 import { useMatch } from 'react-router-dom';
 
 class ProfileContainer extends React.Component {
 
 	refreshProfile() {
-		debugger;
 		let userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
 		if (!userId) {
 				this.props.history.push("/login");
@@ -50,4 +49,5 @@ let mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto})(ProfileURLMatch);
+export default connect(mapStateToProps, 
+	{getUserProfile, getStatus, updateStatus, savePhoto,saveProfile})(ProfileURLMatch);

@@ -73,6 +73,12 @@ export const usersAPI = {
 	
 }
 
+export const securityAPI = {
+	getCaptchaUrl() {
+		return instance.get(`security/get-captcha-url`);
+	}
+}
+
 export const sidebarApi = {
 	getFriends(currentPage = 1, pageSize = 6){
 	return instance.get(`users?page=${currentPage}&count=${pageSize}`)
