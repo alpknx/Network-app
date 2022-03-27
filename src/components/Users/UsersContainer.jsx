@@ -4,7 +4,6 @@ import Users from './Users';
 import { followAC,unFollowAC, setCurrentPageAC, toggleFollowingProgressAC, getUsersThunkCreator 
 	,setPostFollowThunkCreator, setDeleteFollowThunkCreator} from '../../Redux/users-reducer';
 import Preloader from '../Preloader/Preloader';
-import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 class  UsersContainer extends React.Component{
@@ -14,8 +13,8 @@ class  UsersContainer extends React.Component{
 		
 	}
 
-	onPageChanged = (pageNumber) => {
-		this.props.getUsersThunk(pageNumber, this.props.pageSize);
+	onPageChanged = (currentPage) => {
+		this.props.getUsersThunk(currentPage, this.props.pageSize);
 	}
 
 	setFollow = (userId) => {
@@ -48,16 +47,16 @@ class  UsersContainer extends React.Component{
 
 let mapStateToProps = (state) => {
 	return {
-	users: state.usersPage.users,
-	pageSize: state.usersPage.pageSize,
-	totalUsersCount: state.usersPage.totalUsersCount,
-	currentPage: state.usersPage.currentPage,
-	isFetching : state.usersPage.isFetching,
-	followingInProgress: state.usersPage.followingInProgress
+		users: state.usersPage.users,
+		pageSize: state.usersPage.pageSize,
+		totalUsersCount: state.usersPage.totalUsersCount,
+		currentPage:  state.usersPage.currentPage,
+		isFetching: state.usersPage.isFetching,
+		followingInProgress: state.usersPage.followingInProgress
 	}	
 }
 
-export default connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
 	follow:followAC,
 	unfollow:unFollowAC,
 	setCurrentPage:setCurrentPageAC,
@@ -65,5 +64,5 @@ export default connect(mapStateToProps, {
 	getUsersThunk: getUsersThunkCreator,
 	setPostFollowThunk: setPostFollowThunkCreator,
 	setDeleteFollowThunk: setDeleteFollowThunkCreator
-	})(UsersContainer);
+	}))(UsersContainer);
 
