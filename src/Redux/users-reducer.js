@@ -11,7 +11,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 let initialState = {
 	users: [],
 	pageSize: 5,
-	totalUsersCount: 108,
+	totalUsersCount: 0,
 	currentPage: 1,
 	isFetching: false, //preloader
 	followingInProgress: []
@@ -87,7 +87,7 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
 				dispatch(toggleIsFetchingAC(false));
 				dispatch(setCurrentPageAC(currentPage))
 				dispatch(setUsersAC(response.data.items));
-				//dispatch(setTotalUsersCountAC(data.totalCount));
+				dispatch(setTotalUsersCountAC(response.data.totalCount));
 			});
 		}
 }

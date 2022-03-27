@@ -14,7 +14,6 @@ const AddMessage = (props) => {
 }
 
 const AddMessageForm = (props) => {
-	debugger;
 	return (
 			<Formik initialValues={{newMessageBody: ""}}
 					onSubmit={(values) => {
