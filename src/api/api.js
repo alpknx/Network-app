@@ -38,6 +38,19 @@ export const profileAPI = {
 		.then(response => {
 			return response.data;
 		});
+	},
+	savePhoto(photoFile) {
+		const formData = new FormData();
+		formData.append("image", photoFile);
+
+	return instance.put(`profile/photo`, formData, {
+		headers: {
+			'Content-Type': 'multipart/form-data'
+		}
+		});
+	},
+	saveProfile(profile) {
+		return instance.put(`profile`, profile );
 	}
 }
 
