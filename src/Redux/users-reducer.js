@@ -41,8 +41,13 @@ const usersReducer = (state = initialState , action) => {
 		}
 
 		case SET_USERS: {
-         return { ...state,
-						users: [ ...action.users ]}
+			if(state.users.length > 0) {
+				return state
+			}
+			return { ...state,
+				users:[ ...state.users, ...action.users ],
+				
+			  }
       }
 		case SET_CURRENT_PAGE: {
          return { ...state,
@@ -64,7 +69,6 @@ const usersReducer = (state = initialState , action) => {
 					: state.followingInProgress.filter(id => id != action.userId)
 			}
 		}
-
 		default:
 			return state;
 	}
