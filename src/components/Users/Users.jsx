@@ -7,14 +7,6 @@ const Users = (props) => {
 	if (props.users.length === 0) {
 		props.setUsers([
 			{
-				id: 1, 
-				followed:true, 
-				fullName: 'Alexander', 
-				status: "Looking new opportunity ", 
-				img:`${profileImg}`,
-				location: {city:"Moscow", country: "Russia"}
-			},
-			{
 				id: 2, 
 				followed:true, 
 				fullName: 'Ivan', 
@@ -32,8 +24,6 @@ const Users = (props) => {
 			}
 		])
 	}
-
-	debugger;
 	return (
 		<div className={cl.users}>
 			<User users={props.users} follow={props.follow} unfollow={props.unfollow}/>

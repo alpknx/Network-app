@@ -1,3 +1,4 @@
+import profileImg from '../../src/components/assets/img/profile-img.png';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -31,11 +32,14 @@ const usersReducer = (state = initialState , action) => {
 		}
 
 		case SET_USERS: {
-			debugger;
-         return { ...state,
-						users: [ ...action.users ]}
+			if(state.users.length > 0) {
+				return state
+			}
+			return { ...state,
+				users:[ ...state.users, ...action.users ],
+				
+			}
       }
-
 		default:
 			return state;
 	}
