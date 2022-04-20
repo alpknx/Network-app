@@ -3,9 +3,11 @@ import profileImg from '../../assets/img/profile-img.png';
 import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
+
+	const user = props.user
+
 	return(
 		<div className={cl.user_wrapper_inner}>
-			{props.users.map(user =>
 			<div className={cl.user_profile} key={user.id}>
 				<div className={cl.image_and_button}>
 					<NavLink to={'/profile/' + user.id}>
@@ -46,8 +48,6 @@ const User = (props) => {
 					</div>
 				</div>
 			</div>
-			)
-		}
 	</div>
 	);
 }
