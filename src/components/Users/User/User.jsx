@@ -1,9 +1,11 @@
 import cl from './User.module.css';
 
 const User = (props) => {
+	const user = props.user
+
 	return(
 		<div className={cl.user_wrapper_inner}>
-			{props.users.map(user =>
+			
 			<div className={cl.user_profile} key={user.id}>
 				<div className={cl.image_and_button}>
 					<div className={cl.img_profile}>
@@ -38,8 +40,6 @@ const User = (props) => {
 					</div>
 				</div>
 			</div>
-			)
-		}
 	</div>
 	);
 }

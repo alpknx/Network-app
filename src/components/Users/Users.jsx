@@ -20,13 +20,16 @@ const Users = (props) => {
 				fullName: 'Pavel', 
 				status: "Looking new opportunity ", 
 				img:`${profileImg}`,
-				location: {city:"Moscow", country: "Russia"}
+				location: {city:"Moscow", country: "Russia"},
 			}
 		])
 	}
 	return (
 		<div className={cl.users}>
-			<User users={props.users} follow={props.follow} unfollow={props.unfollow}/>
+			{props.users.map(user => 
+				<User user={user} follow={props.follow} unfollow={props.unfollow} key={user.id}/>
+			)}
+			
 		</div>
 	);
 }
