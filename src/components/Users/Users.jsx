@@ -1,6 +1,5 @@
-import profileImg from '../assets/img/profile-img.png';
 import User from './User/User';
-import cl from './Users.module.css';
+import cl from './Users.module.css'
 
 const Users = (props) => {
 
@@ -31,6 +30,7 @@ const Users = (props) => {
 			)}
 			
 		</div>
+
 	);
 }
 

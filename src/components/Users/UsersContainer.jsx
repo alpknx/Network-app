@@ -1,28 +1,68 @@
 import { connect } from 'react-redux';
-import { followAC, setUsersAC, unFollowAC } from '../../Redux/users-reducer';
+import React from 'react';
 import Users from './Users';
+import { followAC,unFollowAC, setCurrentPageAC, toggleFollowingProgressAC, getUsersThunkCreator 
+	,setPostFollowThunkCreator, setDeleteFollowThunkCreator} from '../../Redux/users-reducer';
+import Preloader from '../Preloader/Preloader';
+import { compose } from 'redux';
+
+class  UsersContainer extends React.Component{
+
+	componentDidMount() {
+		this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
+		
+	}
+
+	onPageChanged = (currentPage) => {
+		this.props.getUsersThunk(currentPage, this.props.pageSize);
+	}
+
+	setFollow = (userId) => {
+		this.props.setPostFollowThunk(userId);
+	}
+		
+	setUnFollow = (userId) => {
+		this.props.setDeleteFollowThunk(userId)
+	}
+
+	render() {
+		return (
+			<>
+			{this.props.isFetching ? <Preloader/> : null}
+			<Users totalUsersCount={this.props.totalUsersCount}
+					pageSize = {this.props.pageSize}
+					currentPage = {this.props.currentPage}
+					onPageChanged = {this.onPageChanged}
+					users = {this.props.users}
+					follow = {this.setFollow}
+					unfollow = {this.setUnFollow}
+					toggleFollowingProgress={this.props.toggleFollowingProgress}
+               followingInProgress={this.props.followingInProgress}
+					/>
+			</>
+		);
+
+	}	
+}
 
 let mapStateToProps = (state) => {
 	return {
-	users: state.usersPage.users 
-	}
+		users: state.usersPage.users,
+		pageSize: state.usersPage.pageSize,
+		totalUsersCount: state.usersPage.totalUsersCount,
+		currentPage:  state.usersPage.currentPage,
+		isFetching: state.usersPage.isFetching,
+		followingInProgress: state.usersPage.followingInProgress
+	}	
 }
 
+export default compose(connect(mapStateToProps, {
+	follow:followAC,
+	unfollow:unFollowAC,
+	setCurrentPage:setCurrentPageAC,
+	toggleFollowingProgress:toggleFollowingProgressAC,
+	getUsersThunk: getUsersThunkCreator,
+	setPostFollowThunk: setPostFollowThunkCreator,
+	setDeleteFollowThunk: setDeleteFollowThunkCreator
+	}))(UsersContainer);
 
-let mapDispatchToProps = (dispatch) => {
-	return{
-		follow: (userId) => {
-			dispatch(followAC(userId));
-		},
-		unfollow: (userId) => {
-			dispatch(unFollowAC(userId));
-		},
-		setUsers: (users) => {
-			dispatch(setUsersAC(users));
-		}
-	}
-}
-
-const UsersConstainer = connect(mapStateToProps, mapDispatchToProps)(Users);
-
-export default UsersConstainer;

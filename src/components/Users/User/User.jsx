@@ -1,4 +1,6 @@
 import cl from './User.module.css';
+import profileImg from '../../assets/img/profile-img.png';
+import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
 	const user = props.user
@@ -8,15 +10,21 @@ const User = (props) => {
 			
 			<div className={cl.user_profile} key={user.id}>
 				<div className={cl.image_and_button}>
-					<div className={cl.img_profile}>
-						<img src={user.img}/>
-					</div>
+					<NavLink to={'/profile/' + user.id}>
+						<div className={cl.img_profile}>
+							<img src={user.photos.small !== null ? user.photos.small : profileImg}/>
+						</div>
+					</NavLink>
 					<div className={cl.button}>
 						{user.followed
-							? <button onClick={() => {
+							? <button disabled={props.followingInProgress.some(id => id === user.id)} 
+							onClick={() => {
+								props.toggleFollowingProgress(true, user.id);
 								props.unfollow(user.id);
+								props.toggleFollowingProgress(false, user.id);
 							} }>Unfollow</button>
-							: <button onClick={() => {
+							: <button  disabled={props.followingInProgress.some(id => id === user.id)} 
+							onClick={() => {
 								props.follow(user.id);
 							} }>Follow</button>}
 					</div>
@@ -24,7 +32,7 @@ const User = (props) => {
 				<div className={cl.user_info}>
 					<div className={cl.user_name}>
 						<div>
-							{user.fullName}
+							{user.name}
 						</div>
 						<div>
 							{user.status}
@@ -32,10 +40,10 @@ const User = (props) => {
 					</div>
 					<div className={cl.user_location}>
 						<div>
-							{user.location.country}
+							"user.location.country"
 						</div>
 						<div>
-							{user.location.city}
+							"user.location.city"
 						</div>
 					</div>
 				</div>
