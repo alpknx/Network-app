@@ -14,7 +14,7 @@ test('length of posts should be incremented', () => {
   const action = onAddPostAC('it-kamasutra.com');
 
   // 2. action
-  const newState = profileReducer(action, state);
+  const newState = profileReducer(state, action);
 
   // 3. expectation
   expect(newState.postsData.length).toEqual(5);
