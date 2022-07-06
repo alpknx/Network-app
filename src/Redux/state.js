@@ -1,15 +1,30 @@
-import profileImg from './../components/assets/img/profile-img.png';
-import messagesReducer from './messages-reducer';
-import profileReducer from './profile-reducer';
-import sidebarReducer from './sidebar-reducer';
+/* eslint-disable no-underscore-dangle */
+import profileImg from '../components/assets/img/profile-img.png';
+import messagesReducer from './messages.reducer';
+import profileReducer from './profile.reducer';
 
-let store = {
+const store = {
   _state: {
     profilePage: {
       postsData: [
-        { id: 1, message: 'Hi, How are you?', likes: 20, img: `${profileImg}` },
-        { id: 2, message: 'It is my first Post', likes: 11, img: `${profileImg}` },
-        { id: 3, message: 'Second', likes: 10, img: `${profileImg}` },
+        {
+          id: 1,
+          message: 'Hi, How are you?',
+          likes: 20,
+          img: `${profileImg}`,
+        },
+        {
+          id: 2,
+          message: 'It is my first Post',
+          likes: 11,
+          img: `${profileImg}`,
+        },
+        {
+          id: 3,
+          message: 'Second',
+          likes: 10,
+          img: `${profileImg}`,
+        },
       ],
       newPostText: '',
     },
@@ -43,6 +58,7 @@ let store = {
   },
 
   _callSubscriber() {
+    // eslint-disable-next-line no-console
     console.log('state changed');
   },
 
@@ -51,13 +67,12 @@ let store = {
   },
 
   subscribe(observer) {
-    this._callSubscriber = observer; //observer button.addEventListener
+    this._callSubscriber = observer; // observer button.addEventListener
   },
 
   dispatch(action) {
     this._state.profilePage = profileReducer(this._state.profilePage, action);
     this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
-    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
     this._callSubscriber(this._state);
   },
 };

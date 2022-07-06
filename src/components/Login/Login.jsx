@@ -1,10 +1,9 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { login } from '../../Redux/auth-reducer';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
-import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { login } from '../../Redux/auth.reducer';
 
 const Login = (props) => {
   const formik = useFormik({
@@ -23,9 +22,9 @@ const Login = (props) => {
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        //минимальная длина - 2 символа
+        // минимальная длина - 2 символа
         .min(2, 'Must be longer than 2 characters')
-        //максимальная длина - 20 символов
+        // максимальная длина - 20 символов
         .max(20, 'Nice try, nobody has a first name that long')
         .required('Required'),
       password: Yup.string().min(8, 'Must be longer than 8 characters').required('Required'),

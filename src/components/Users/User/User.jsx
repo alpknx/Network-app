@@ -1,17 +1,17 @@
+import { NavLink } from 'react-router-dom';
 import cl from './User.module.css';
 import profileImg from '../../assets/img/profile-img.png';
-import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
-  const user = props.user;
+  const { user } = props;
 
   return (
     <div className={cl.user_wrapper_inner}>
       <div className={cl.user_profile} key={user.id}>
         <div className={cl.image_and_button}>
-          <NavLink to={'/profile/' + user.id}>
+          <NavLink to={`/profile/${user.id}`}>
             <div className={cl.img_profile}>
-              <img src={user.photos.small !== null ? user.photos.small : profileImg} />
+              <img src={user.photos.small !== null ? user.photos.small : profileImg} alt='user' />
             </div>
           </NavLink>
           <div className={cl.button}>

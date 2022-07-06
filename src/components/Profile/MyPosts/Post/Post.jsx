@@ -4,7 +4,7 @@ const Post = (props) => {
   return (
     <div className={cl.post_item}>
       <div className={cl.img_profile}>
-        <img src={props.img} />
+        <img src={props.img} alt='profile' />
       </div>
       <div className={cl.post_and_like}>
         <div className={cl.post_text}>{props.message}</div>
