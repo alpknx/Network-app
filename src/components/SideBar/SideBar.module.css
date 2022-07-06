@@ -1,15 +1,15 @@
 .side_bar_inner {
-	display: block;
+  display: block;
 }
 
 .side_bar_nav {
-	display: block;
-	text-align: left;
+  display: block;
+  text-align: left;
 }
 
 .side_bar_ol {
-	display: block;
-	list-style: none;
-	padding: 0;
-	margin: 8px;
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 8px;
 }

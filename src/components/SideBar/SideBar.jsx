@@ -8,20 +8,20 @@ import cl from './SideBar.module.css';
 import SideBarItem from './SideBarItem/SideBarItem';
 
 const SideBar = (props) => {
-	return (
-		<div className={cl.side_bar_inner}>
-			<nav className={cl.side_bar_nav}>
-				<ol className={cl.side_bar_ol}>
-					<SideBarItem icon={profileIcon} link={"/profile"} SideBarItem="Profile"/>
-					<SideBarItem icon={messagesIcon} link={"/dialogs"} SideBarItem="Messages"/>
-					<SideBarItem icon={usersIcon} link={"/users"} SideBarItem="Users"/>
-					<SideBarItem icon={newsIcon} link={"/news"} SideBarItem="News"/>
-					<SideBarItem icon={musicIcon} link={"/music"} SideBarItem="Music"/>
-					<SideBarItem icon={settingsIcon} link={"/settings"} SideBarItem="Settings"/>
-				</ol>
-			</nav>
-		</div>
-	)
-}
+  return (
+    <div className={cl.side_bar_inner}>
+      <nav className={cl.side_bar_nav}>
+        <ol className={cl.side_bar_ol}>
+          <SideBarItem icon={profileIcon} link={'/profile'} SideBarItem='Profile' />
+          <SideBarItem icon={messagesIcon} link={'/dialogs'} SideBarItem='Messages' />
+          <SideBarItem icon={usersIcon} link={'/users'} SideBarItem='Users' />
+          <SideBarItem icon={newsIcon} link={'/news'} SideBarItem='News' />
+          <SideBarItem icon={musicIcon} link={'/music'} SideBarItem='Music' />
+          <SideBarItem icon={settingsIcon} link={'/settings'} SideBarItem='Settings' />
+        </ol>
+      </nav>
+    </div>
+  );
+};
 
 export default SideBar;

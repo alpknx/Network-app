@@ -1,53 +1,50 @@
 .user_wrapper_inner {
-	display: grid;
-	grid-gap: 16px;
+  display: grid;
+  grid-gap: 16px;
 }
 
-.user_profile{
-	display: flex;
-	height: fit-content;
-	background-color: #FFFFFF;
-	border-radius: 5px;
+.user_profile {
+  display: flex;
+  height: fit-content;
+  background-color: #ffffff;
+  border-radius: 5px;
 }
 
-.img_profile img{
-	height: 200px;
-	width: 200px;
-
+.img_profile img {
+  height: 200px;
+  width: 200px;
 }
 
 .button {
-	text-align: center;
+  text-align: center;
 }
 
-.button button{
-	border-radius: 5px;
-	margin: 8px;
-	padding: 8px;
-	font-weight: 700;
-   color: white;
-   text-decoration: none;
-   transition: 0.2s; 
-	background: rgb(64,199,129);
-	box-shadow: 0 -3px rgb(53,167,110) inset;
-	width: 80%;
-	font-size: 20px;
-	border-radius: 5px;
-	
+.button button {
+  border-radius: 5px;
+  margin: 8px;
+  padding: 8px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
+  background: rgb(64, 199, 129);
+  box-shadow: 0 -3px rgb(53, 167, 110) inset;
+  width: 80%;
+  font-size: 20px;
+  border-radius: 5px;
 }
 
 .user_info {
-	display: flex;
-	flex-grow:1;
+  display: flex;
+  flex-grow: 1;
 }
 
 .user_name {
-	margin: 16px;
-	
+  margin: 16px;
 }
 
 .user_location {
-	margin: 16px;
-	flex-grow:1;
-	text-align: right;	
+  margin: 16px;
+  flex-grow: 1;
+  text-align: right;
 }
