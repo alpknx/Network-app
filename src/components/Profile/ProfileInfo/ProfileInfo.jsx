@@ -1,13 +1,13 @@
-import profileImg from './../../assets/img/profile-img.png';
+import { useState } from 'react';
+import profileImg from '../../assets/img/profile-img.png';
 import cl from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-import { useState } from 'react';
 import ProfileDataFormReduxForm from './ProfileDataForm';
-import { saveProfile } from '../../../Redux/profile-reducer';
+import { saveProfile } from '../../../Redux/profile.reducer';
 
 const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
-  let [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   if (!profile) {
     return <Preloader />;
@@ -28,7 +28,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
   return (
     <div className={cl.user_info}>
       <div className={cl.img_profile}>
-        <img src={profile.photos.large ? profile.photos.small : profileImg} />
+        <img src={profile.photos.large ? profile.photos.small : profileImg} alt='profile' />
         {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
       </div>
       <div className={cl.user_name}>
@@ -51,43 +51,39 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
   );
 };
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
-  return (
+const ProfileData = ({ profile, isOwner, goToEditMode }) => (
+  <div>
+    {isOwner && (
+      <div>
+        <button onClick={goToEditMode}>edit</button>
+      </div>
+    )}
+    <div></div>
     <div>
-      {isOwner && (
-        <div>
-          <button onClick={goToEditMode}>edit</button>
-        </div>
-      )}
-      <div></div>
-      <div>
-        <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
-      </div>
-      {profile.lookingForAJob && (
-        <div>
-          <b>My professional skills</b>: {profile.lookingForAJobDescription}
-        </div>
-      )}
-
-      <div>
-        <b>About me</b>: {profile.aboutMe}
-      </div>
-      <div>
-        <b>Contacts</b>:{' '}
-        {Object.keys(profile.contacts).map((key) => {
-          return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />;
-        })}
-      </div>
+      <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
     </div>
-  );
-};
+    {profile.lookingForAJob && (
+      <div>
+        <b>My professional skills</b>: {profile.lookingForAJobDescription}
+      </div>
+    )}
 
-const Contact = ({ contactTitle, contactValue }) => {
-  return (
     <div>
-      <b>{contactTitle}</b>: {contactValue}
+      <b>About me</b>: {profile.aboutMe}
     </div>
-  );
-};
+    <div>
+      <b>Contacts</b>:{' '}
+      {Object.keys(profile.contacts).map((key) => (
+        <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+      ))}
+    </div>
+  </div>
+);
+
+const Contact = ({ contactTitle, contactValue }) => (
+  <div>
+    <b>{contactTitle}</b>: {contactValue}
+  </div>
+);
 
 export default ProfileInfo;

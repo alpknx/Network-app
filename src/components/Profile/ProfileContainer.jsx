@@ -1,12 +1,12 @@
 import React from 'react';
-import Profile from './Profile';
-import { getStatus, getUserProfile, updateStatus, savePhoto, saveProfile } from '../../Redux/profile-reducer';
 import { connect } from 'react-redux';
 import { useMatch } from 'react-router-dom';
+import Profile from './Profile';
+import { getStatus, getUserProfile, updateStatus, savePhoto, saveProfile } from '../../Redux/profile.reducer';
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
-    let userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
+    const userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
     if (!userId) {
       this.props.history.push('/login');
     }
@@ -18,8 +18,9 @@ class ProfileContainer extends React.Component {
     this.refreshProfile();
   }
 
+  // eslint-disable-next-line no-unused-vars
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.match != prevProps.match) {
+    if (this.props.match !== prevProps.match) {
       this.refreshProfile();
     }
   }
@@ -52,13 +53,17 @@ const ProfileURLMatch = (props) => {
   );
 };
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,
   isAuth: state.auth.isAuth,
 });
 
-export default connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile })(
-  ProfileURLMatch
-);
+export default connect(mapStateToProps, {
+  getUserProfile,
+  getStatus,
+  updateStatus,
+  savePhoto,
+  saveProfile,
+})(ProfileURLMatch);

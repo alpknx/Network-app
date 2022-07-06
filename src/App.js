@@ -1,15 +1,15 @@
 import React, { Component, Suspense } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import News from './../src/components/News/News';
-import Music from './../src/components/Music/Music';
-import Settings from './../src/components/Settings/Settings';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import News from './components/News/News';
+import Music from './components/Music/Music';
+import Settings from './components/Settings/Settings';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import SideBar from './components/SideBar/SideBar';
-import { initializeApp } from './Redux/app-reducer';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { initializeApp } from './Redux/app.reducer';
 import Preloader from './components/Preloader/Preloader';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -17,9 +17,11 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 
 class App extends Component {
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   catchAllUnhandledErrors = (reason, promise) => {
+    // eslint-disable-next-line no-alert
     alert('Some error occured');
-    //console.error(promiseRejectionEvent);
+    // console.error(promiseRejectionEvent);
   };
 
   componentDidMount() {
@@ -30,6 +32,7 @@ class App extends Component {
     window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   render() {
     return (
       <BrowserRouter>

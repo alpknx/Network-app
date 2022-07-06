@@ -5,19 +5,19 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'; //preloader
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'; // preloader
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
-let initialState = {
+const initialState = {
   users: [],
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: false, //preloader
+  isFetching: false, // preloader
   followingInProgress: [],
 };
 
-const usersReducer = (state = initialState, action) => {
+const usersReducer = (action, state = initialState) => {
   switch (action.type) {
     case FOLLOW:
       return {
@@ -60,7 +60,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         followingInProgress: action.isFetching
           ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter((id) => id != action.userId),
+          : state.followingInProgress.filter((id) => id !== action.userId),
       };
     }
     default:
@@ -72,7 +72,10 @@ export const followAC = (userId) => ({ type: FOLLOW, userId });
 export const unFollowAC = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsersAC = (users) => ({ type: SET_USERS, users });
 export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
-export const setTotalUsersCountAC = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
+export const setTotalUsersCountAC = (totalUsersCount) => ({
+  type: SET_TOTAL_USERS_COUNT,
+  count: totalUsersCount,
+});
 export const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleFollowingProgressAC = (isFetching, userId) => ({
   type: TOGGLE_IS_FOLLOWING_PROGRESS,
@@ -80,39 +83,33 @@ export const toggleFollowingProgressAC = (isFetching, userId) => ({
   userId,
 });
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(toggleIsFetchingAC(true));
-    usersAPI.getUsers(currentPage, pageSize).then((response) => {
-      dispatch(toggleIsFetchingAC(false));
-      dispatch(setCurrentPageAC(currentPage));
-      dispatch(setUsersAC(response.data.items));
-      dispatch(setTotalUsersCountAC(response.data.totalCount));
-    });
-  };
+export const getUsersThunkCreator = (currentPage, pageSize) => (dispatch) => {
+  dispatch(toggleIsFetchingAC(true));
+  usersAPI.getUsers(currentPage, pageSize).then((response) => {
+    dispatch(toggleIsFetchingAC(false));
+    dispatch(setCurrentPageAC(currentPage));
+    dispatch(setUsersAC(response.data.items));
+    dispatch(setTotalUsersCountAC(response.data.totalCount));
+  });
 };
-export const setPostFollowThunkCreator = (userId) => {
-  return (dispatch) => {
-    usersAPI.postFollow(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(toggleFollowingProgressAC(true, userId));
-        dispatch(followAC(userId));
-        dispatch(toggleFollowingProgressAC(false, userId));
-      }
-    });
-  };
+export const setPostFollowThunkCreator = (userId) => (dispatch) => {
+  usersAPI.postFollow(userId).then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(toggleFollowingProgressAC(true, userId));
+      dispatch(followAC(userId));
+      dispatch(toggleFollowingProgressAC(false, userId));
+    }
+  });
 };
 
-export const setDeleteFollowThunkCreator = (userId) => {
-  return (dispatch) => {
-    usersAPI.deleteFollow(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(toggleFollowingProgressAC(true, userId));
-        dispatch(unFollowAC(userId));
-        dispatch(toggleFollowingProgressAC(false, userId));
-      }
-    });
-  };
+export const setDeleteFollowThunkCreator = (userId) => (dispatch) => {
+  usersAPI.deleteFollow(userId).then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(toggleFollowingProgressAC(true, userId));
+      dispatch(unFollowAC(userId));
+      dispatch(toggleFollowingProgressAC(false, userId));
+    }
+  });
 };
 
 export default usersReducer;

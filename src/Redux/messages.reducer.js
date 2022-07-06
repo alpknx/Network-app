@@ -1,7 +1,8 @@
-import profileImg from './../components/assets/img/profile-img.png';
+import profileImg from '../components/assets/img/profile-img.png';
+
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
-let initialState = {
+const initialState = {
   dialogsData: [
     { id: 1, name: 'Alexander', img: `${profileImg}` },
     { id: 2, name: 'Sergey', img: `${profileImg}` },
@@ -19,14 +20,15 @@ let initialState = {
   ],
 };
 
-const messagesReducer = (state = initialState, action) => {
+const messagesReducer = (action, state = initialState) => {
   switch (action.type) {
-    case SEND_MESSAGE:
-      let body = action.newMessageBody;
+    case SEND_MESSAGE: {
+      const body = action.newMessageBody;
       return {
         ...state,
         messagesData: [...state.messagesData, { id: 6, message: body, img: `${profileImg}` }],
       };
+    }
     default:
       return state;
   }

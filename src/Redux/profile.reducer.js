@@ -1,6 +1,6 @@
-import { profileAPI, usersAPI } from '../api/api';
-import profileImg from './../components/assets/img/profile-img.png';
 import { stopSubmit } from 'redux-form';
+import { profileAPI } from '../api/api';
+import profileImg from '../components/assets/img/profile-img.png';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -8,23 +8,46 @@ const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
-let initialState = {
+const initialState = {
   postsData: [
-    { id: 1, message: 'Hi, How are you?', likes: 20, img: `${profileImg}` },
-    { id: 2, message: 'It is my first Post', likes: 11, img: `${profileImg}` },
-    { id: 3, message: 'Second', likes: 10, img: `${profileImg}` },
+    {
+      id: 1,
+      message: 'Hi, How are you?',
+      likes: 20,
+      img: `${profileImg}`,
+    },
+    {
+      id: 2,
+      message: 'It is my first Post',
+      likes: 11,
+      img: `${profileImg}`,
+    },
+    {
+      id: 3,
+      message: 'Second',
+      likes: 10,
+      img: `${profileImg}`,
+    },
   ],
   profile: null,
   status: '',
 };
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (action, state = initialState) => {
   switch (action.type) {
     case ADD_POST: {
-      let body = action.newPostBody;
+      const body = action.newPostBody;
       return {
         ...state,
-        postsData: [...state.postsData, { id: 4, message: body, likes: 10, img: `${profileImg}` }],
+        postsData: [
+          ...state.postsData,
+          {
+            id: 4,
+            message: body,
+            likes: 10,
+            img: `${profileImg}`,
+          },
+        ],
       };
     }
 
@@ -43,7 +66,7 @@ const profileReducer = (state = initialState, action) => {
     }
 
     case DELETE_POST:
-      return { ...state, postsData: state.postsData.filter((p) => p.id != action.postId) };
+      return { ...state, postsData: state.postsData.filter((p) => p.id !== action.postId) };
 
     default:
       return state;
@@ -68,9 +91,10 @@ export const getStatus = (userId) => (dispatch) => {
   });
 };
 
+// eslint-disable-next-line consistent-return
 export const updateStatus = (status) => async (dispatch) => {
   try {
-    let response = await profileAPI.updateStatus(status);
+    const response = await profileAPI.updateStatus(status);
     if (response.data.resultCode === 0) {
       dispatch(setStatus(status));
     }
@@ -80,15 +104,16 @@ export const updateStatus = (status) => async (dispatch) => {
 };
 
 export const savePhoto = (file) => async (dispatch) => {
-  let response = await profileAPI.savePhoto(file);
+  const response = await profileAPI.savePhoto(file);
 
   if (response.data.resultCode === 0) {
     dispatch(savePhotoSuccess(response.data.data.photos));
   }
 };
 
+// eslint-disable-next-line consistent-return
 export const saveProfile = (profile) => async (dispatch, getState) => {
-  const userId = getState().auth.userId;
+  const { userId } = getState().auth;
   const response = await profileAPI.saveProfile(profile);
 
   if (response.data.resultCode === 0) {
