@@ -20,7 +20,7 @@ const initialState = {
   ],
 };
 
-const messagesReducer = (action, state = initialState) => {
+const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE: {
       const body = action.newMessageBody;

@@ -33,7 +33,7 @@ const initialState = {
   status: '',
 };
 
-const profileReducer = (action, state = initialState) => {
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
       const body = action.newPostBody;

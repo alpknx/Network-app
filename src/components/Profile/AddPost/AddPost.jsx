@@ -3,8 +3,6 @@ import cl from './AddPost.module.css';
 import { Formik, Form, Field } from 'formik';
 
 const AddPost = (props) => {
-  let newPostElement = React.createRef();
-
   return (
     <div className={cl.add_post}>
       <AddPostForm onAddPost={props.onAddPost} />

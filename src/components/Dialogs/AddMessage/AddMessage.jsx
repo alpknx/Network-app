@@ -3,7 +3,6 @@ import cl from './AddMessage.module.css';
 import { Formik, Form, Field } from 'formik';
 
 const AddMessage = (props) => {
-  let newMessageElement = React.createRef();
   return (
     <div className={cl.add_message}>
       <AddMessageForm sendMessage={props.sendMessage} />
