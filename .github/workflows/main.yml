@@ -1,0 +1,23 @@
+name: node CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test
